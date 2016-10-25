@@ -1,0 +1,53 @@
+.sessions.new, .registrations.new
+  background: $purple
+  background-size: cover
+  position: relative
+  height: 100%
+
+  main
+    +transform(translate(-50%, -50%))
+    position: absolute
+    width: 450px
+    top: 40%
+    left: 50%
+    text-align: center
+
+    header
+      text-align: center
+      margin-bottom: 2em
+
+      .logo
+        display: inline-block
+        background: url(/images/logo.png) 0 0 no-repeat
+        background-size: contain
+        height: 62px
+        width: 198px
+        vertical-align: middle
+
+  form
+    margin-bottom: $base-spacing
+    .field
+      margin: .5em 0
+
+    [type="text"], [type="email"], [type="password"], button
+      border: 0px none
+      width: 350px
+      padding: 1em
+      font-size: 1.1em
+
+    button
+      +transition
+      background: transparent
+      color: #fff
+      border: 1px solid #fff
+
+      &:hover
+        color: $purple
+        background: #fff
+
+  a
+    +transition
+    color: rgba(#fff, .5)
+
+    &:hover
+      color: #fff

@@ -1,0 +1,165 @@
+.md-overlay
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 1000
+  background: rgba(#333, .7)
+  overflow-y: scroll
+  animation-duration: .3s
+  animation-name: fadeIn
+
+  .md-modal
+    +backface-visibility(hidden)
+    position: fixed
+    pointer-events: none
+    z-index: 2000
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    overflow-y: scroll
+
+    .md-content
+      $width: 700px
+      +pad($base-spacing)
+      border-radius: $base-border-radius
+      background: $light-gray
+      position: absolute
+      pointer-events: all
+      width: $width
+      top: $base-spacing*2
+      left: 50%
+      margin-left: -$width/2
+      animation-duration: .3s
+      animation-name: fadeIn
+
+      > header
+        margin-bottom: 1em
+
+
+  .card-modal
+    +clearfix
+    position: relative
+
+    .react-gravatar
+      border-radius: $base-border-radius
+      width: 30px
+      height: 30px
+
+    > .close
+      position: absolute
+      right: $base-spacing/2
+      top: $base-spacing/2
+      line-height: 1em
+      color: tint($dark-gray, 30)
+
+      &:hover
+        color: $dark-gray
+
+    .info
+      +span-columns(9)
+
+    .options
+      +span-columns(3)
+      position: relative
+      overflow: visible
+
+      .button
+        +fill-parent
+        +transition
+        background: #fff
+        padding: .3em .5em
+        border-radius: $base-border-radius
+        border-bottom: 1px solid $gray
+        display: block
+        color: $base-font-color
+        font-weight: bold
+        margin-bottom: $base-spacing/3
+
+        .fa
+          color: $gray
+          margin-right: .5em
+
+        &:hover
+          background: $blue
+          color: #fff
+
+          .fa
+            color: #fff
+
+    header
+      h3
+        color: $base-font-color
+
+
+    input, textarea
+      +fill-parent
+      display: block
+      margin-bottom: .5em
+      border: 0px none
+      border-bottom: 1px solid $gray
+
+    .form-wrapper
+      +clearfix
+      margin: $base-spacing 0
+
+      .gravatar-wrapper
+        +span-columns(1)
+        .react-gravatar
+          border-radius: $base-border-radius
+          width: 30px
+          height: 30px
+
+      .form-controls
+        +span-columns(11)
+
+    .comment
+      +clearfix
+      margin-bottom: $base-spacing/2
+      animation-duration: .3s
+      animation-name: fadeIn
+
+      .gravatar-wrapper
+        +span-columns(1)
+
+
+      .info-wrapper
+        +span-columns(11)
+        h5
+          margin-bottom: .5em
+        .text
+          background: #fff
+          border-radius: $base-border-radius
+          padding: .5em
+          border: 0px none
+          border-bottom: 1px solid $gray
+
+    .items-wrapper
+      +clearfix
+
+    .card-members
+      +span-columns(6)
+      margin-bottom: $base-spacing
+      animation-duration: .3s
+      animation-name: fadeIn
+      .react-gravatar
+        margin-right: 5px
+        animation-duration: .3s
+        animation-name: fadeIn
+
+    .card-tags
+      +span-columns(6)
+      margin-bottom: $base-spacing
+      animation-duration: .3s
+      animation-name: fadeIn
+      .tag
+        width: 30px
+        height: 30px
+        margin-right: 5px
+        box-shadow: 0 0 0
+        display: inline-block
+        border-radius: $base-border-radius
+        animation-duration: .3s
+        animation-name: fadeIn

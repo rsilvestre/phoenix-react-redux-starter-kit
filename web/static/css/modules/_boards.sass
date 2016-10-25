@@ -1,0 +1,308 @@
+.boards.index
+  overflow-y: scroll
+
+  .boards-wrapper
+    $margin: 1em
+
+    +display(flex)
+    +flex-wrap(wrap)
+    +flex-flow(row wrap)
+    margin: 0 (-$margin/2) $margin (-$margin/2)
+
+    .board
+      +transition
+      +flex(0 0 25%)
+      cursor: pointer
+
+      .inner
+        background: rgba($light-gray, .9)
+        border-radius: $base-border-radius
+        margin: 0 $margin/2 $margin $margin/2
+        line-height: 1.75em
+        overflow: hidden
+        padding: $base-spacing/2
+        min-height: 5em
+        animation-duration: .3s
+        animation-name: fadeIn
+
+
+      &.form
+        input
+          +fill-parent
+          margin-bottom: .5em
+
+      &.add-new
+        .inner
+          +transition
+          background: rgba(#000, .1)
+          cursor: pointer
+          color: $gray
+
+          &:hover
+            background: rgba(#000, .2)
+
+        .inner
+          position: relative
+
+          a
+            +transition
+            +transform(translate(-50%, -50%))
+            display: block
+            position: absolute
+            top: 50%
+            left: 50%
+            color: $gray
+
+.boards.show
+  .fa-spin
+    color: #fff
+  .view-header
+    position: relative
+
+    h3
+      margin: 0
+      color: #fff
+
+    .board-users
+      +transform(translateY(-50%))
+      list-style: none
+      margin: 0
+      padding: 0
+      position: absolute
+      right: 0
+      top: 50%
+      z-index: 99
+
+      > span > li
+        display: inline-block
+        margin-left: .5em
+
+        &.connected
+          opacity: 1
+
+          .react-gravatar
+            opacity: 1
+
+        .react-gravatar, .add-new
+          +transition
+          border-radius: $base-border-radius
+          width: 30px
+          height: 30px
+          opacity: .2
+
+        .add-new
+          +transition
+          opacity: 1
+          display: block
+          position: relative
+          border: 1px solid rgba(#fff, .5)
+          color: rgba(#fff, .5)
+          line-height: 1em
+          font-size: .9em
+
+          .fa
+            +transform(translate(-50%, -50%))
+            position: absolute
+            top: 50%
+            left: 50%
+
+          &:hover
+            color: #fff
+            border-color: #fff
+
+        .drop-down
+          +transition
+          position: absolute
+          right: 0
+          top: 100%
+          list-style: none
+          padding: $base-spacing/2
+          background: rgba($light-gray, .9)
+          border-radius: $base-border-radius
+          min-width: 20em
+          display: none
+          animation-duration: .3s
+          animation-name: fadeIn
+
+          &.active
+            display: block
+
+          form
+            input
+              +fill-parent
+              margin-bottom: .5em
+
+      .avatar-appear
+        opacity: 0.01
+
+      .avatar-appear.avatar-appear-active
+        +transition(opacity .5s ease-in)
+        opacity: 1
+
+      .avatar-enter
+        opacity: 0.01
+
+      .avatar-enter.avatar-enter-active
+        +transition(opacity 500ms ease-in)
+        opacity: 1
+
+      .avatar-leave
+        opacity: 1
+
+      .avatar-leave.avatar-leave-active
+        +transition(opacity 300ms ease-in)
+        opacity: 0.01
+
+  .canvas-wrapper
+    position: relative
+    height: calc(100% - 1em)
+
+    .canvas
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      overflow-x: auto
+      overflow-y: hidden
+      white-space: nowrap
+
+
+  .lists-wrapper
+    $margin: 1em
+    +clearfix
+    margin: 0
+    +display(flex)
+
+    .list
+      +flex(0 0 17em)
+      margin: 0 $margin/1.5 0 0
+      animation-duration: .3s
+      animation-name: fadeIn
+
+      > .inner
+        background: rgba($light-gray, .9)
+        border-radius: $base-border-radius
+        padding: $base-spacing/2
+        cursor: -webkit-grab
+        cursor: -moz-grab
+        cursor: grab
+
+        .list.form
+          +flex(none)
+          +fill-parent
+          display: block
+          margin: 0 0 $base-spacing 0
+
+          .inner
+            padding: 0
+
+      header
+        +fill-parent
+        cursor: pointer
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidden
+
+      &.form
+        display: inline-block
+        input
+          +fill-parent
+          display: block
+          margin-bottom: .5em
+
+      &:not(.add-new)
+        .inner .inner
+          background: transparent
+
+      &.add-new
+        .inner
+          +transition
+          background: rgba(#000, .1)
+          cursor: pointer
+          color: $gray
+
+          &:hover
+            background: rgba(#000, .2)
+      footer
+        .add-new
+          +transition
+          display: block
+          margin: -($base-spacing/2)
+          margin-top: $base-spacing/2
+          padding: .5em $base-spacing/2
+          color: tint($dark-gray, 25)
+          border-radius: 0 0 $base-border-radius $base-border-radius
+
+          &:hover
+            background: rgba($gray, .9)
+            color: $dark-gray
+
+      .card:not(.form)
+        +transition
+        margin-bottom: $base-spacing/3
+        cursor: pointer
+        animation-duration: .3s
+        animation-name: fadeIn
+        white-space: normal
+
+        &.is-over
+          padding-top: 50px
+          position: relative
+
+          :before
+            background: rgba($dark-gray, .1)
+            border-radius: $base-border-radius
+            content: ""
+            display: block
+            height: 40px
+            width: 100%
+            position: absolute
+            top: 0
+            left: 0
+            margin-bottom: $base-spacing/3
+
+        .card-content
+          background: #fff
+          padding: $base-spacing/3
+          border-radius: $base-border-radius
+          border-bottom: 1px solid $gray
+
+        .tags-wrapper
+          +clearfix
+
+          .tag
+            +span-columns(2)
+            animation-duration: .3s
+            animation-name: fadeIn
+            height: .5em
+            border-radius: $base-border-radius
+            &:hover
+              box-shadow: 0 0 0
+
+        .react-gravatar
+          border-radius: $base-border-radius
+          width: 30px
+          height: 30px
+          float: right
+          margin-left: 5px
+          animation-duration: .3s
+          animation-name: fadeIn
+
+        &:hover
+          background: rgba($gray, .4)
+
+        footer
+          +clearfix
+          small
+            color: tint($dark-gray, 35)
+
+      .card.form
+        textarea
+          +fill-parent
+          animation-duration: .3s
+          animation-name: fadeIn
+          display: block
+          margin-bottom: .5em
+          border: 0px none
+          border-bottom: 1px solid $gray
