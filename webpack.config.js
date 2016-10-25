@@ -1,28 +1,35 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const config = require('./config')
 
 module.exports = {
+  name    : 'client',
+  target  : 'web',
   devtool: 'source-map',
   entry: {
-    'app': ['./web/static/css/app.scss', './web/static/js/app.js']
+    'app': [ __dirname + '/web/static/css/app.scss', __dirname + '/web/static/js/app.js' ]
   },
   output: {
     path: './priv/static',
-    filename: '/js/app.js'
+    filename: 'js/app.js'
   },
   resolve: {
-    moduleDirectories: [__dirname + '/web/static/js'],
+    moduleDirectories: [__dirname + '/web/static/js', 'node_modules'],
     alias: {
       phoenix: __dirname + '/deps/phoenix/web/static/js/phoenix.js',
       containers: __dirname + '/web/static/js/containers',
       routes: __dirname + '/web/static/js/containers',
-      projects: __dirname + '/web/static/js/projects',
       styles: __dirname + '/web/static/css',
+      static: __dirname + '/web/static/js/static',
+      store: __dirname + '/web/static/js/store',
       components: __dirname + '/web/static/js/components',
       layouts: __dirname + '/web/static/js/layouts',
       views: __dirname + '/web/static/js/views',
       actions: __dirname + '/web/static/js/redux/modules'
-    }
+    },
+    root: __dirname + '/web/static/js',
+    extensions : ['', '.js', '.jsx', '.json']
   },
   module: {
     loaders: [{
@@ -54,6 +61,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin(config.globals),
     new ExtractTextPlugin('css/app.css'),
     new CopyWebpackPlugin([
       { from: './web/static/assets'},
@@ -62,4 +72,4 @@ module.exports = {
       }
     ])
   ]
-};
+}
