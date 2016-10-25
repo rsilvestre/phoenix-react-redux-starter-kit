@@ -16,3 +16,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Inspiraction
+- [https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit)
+- [https://github.com/bigardone/phoenix-trello](https://github.com/bigardone/phoenix-trello)
+- [https://github.com/davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)

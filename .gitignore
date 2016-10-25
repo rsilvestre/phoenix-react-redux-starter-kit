@@ -13,4 +13,11 @@ erl_crash.dump
 # Alternatively, you may comment the line below and commit the
 # secrets file as long as you replace its contents by environment
 # variables.
+/node_modules
+/config/dev.secret.exs
 /config/prod.secret.exs
+/priv/static/css/application.css
+/priv/static/js/application.js
+
+*.log
+priv/static
