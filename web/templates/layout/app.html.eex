@@ -9,7 +9,7 @@
 
     <title>Hello PhoenixReactReduxStarterKit!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/application.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link id="favicon" rel="icon" type="image/png" sizes="64x64" href="<%= static_path(@conn, "/images/favicon.png") %>"/>
   </head>
 
@@ -21,6 +21,6 @@
         crafted with ♥ for <a href="https://www.wilthard.be/">Wilthard</a>
         by <a href="https://twitter.com/rsilvestre">@rsilvestre</a></small>
     </footer>
-    <script src="<%= static_path(@conn, "/js/application.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
