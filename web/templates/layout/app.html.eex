@@ -22,6 +22,7 @@
         crafted with ♥ for <a href="https://www.wilthard.be/">Wilthard</a>
         by <a href="https://twitter.com/rsilvestre">@rsilvestre</a></small>
     </footer>
+    <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
