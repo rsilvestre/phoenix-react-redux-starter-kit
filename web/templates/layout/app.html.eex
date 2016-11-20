@@ -8,19 +8,20 @@
     <meta name="author" content="">
 
     <title>Hello PhoenixReactReduxStarterKit!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/application.css") %>">
-    <link id="favicon" rel="icon" type="image/png" sizes="64x64" href="<%= static_path(@conn, "/images/favicon.png") %>"/>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link id="favicon" rel="icon" type="image/png" sizes="64x64" href="<%= static_path(@conn, "/favicon.png") %>"/>
   </head>
 
   <body>
-    <main id="main_container" role="main"></main>
+    <div id="root" style="height: 100%"></div>
     <footer id="main_footer">
       <small>
         <a href="https://phoenix-react-redux-starter-kit.com/" target="_blank">Phoenix React Redux Starter Kit</a> tribute for educational purposes
         crafted with ♥ for <a href="https://www.wilthard.be/">Wilthard</a>
         by <a href="https://twitter.com/rsilvestre">@rsilvestre</a></small>
     </footer>
-    <script src="<%= static_path(@conn, "/js/application.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

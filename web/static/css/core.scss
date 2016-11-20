@@ -1,0 +1,24 @@
+@import 'base';
+
+.mainbody {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.view-container {
+  position: relative;
+  transform: translateY(7vh);
+}
+
+.splash-image {
+  background: url('https://s3.amazonaws.com/terakilobyte.com/files/pic.io.pages.terakilobyte.jpg');
+  height: 93vh;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -21,3 +21,5 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 - [https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit)
 - [https://github.com/bigardone/phoenix-trello](https://github.com/bigardone/phoenix-trello)
 - [https://github.com/davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
+
+Read this tutorial [https://blog.diacode.com/page-specific-javascript-in-phoenix-framework-pt-2](https://blog.diacode.com/page-specific-javascript-in-phoenix-framework-pt-2)

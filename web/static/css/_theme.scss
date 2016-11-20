@@ -1,0 +1,26 @@
+// Global
+$background: $titanwhite;
+$textColor: $darkjunglegreen;
+$fontFamily: 'Roboto', Arial, sans-serif;
+
+// Extensions
+$titanLight: lighten($titanwhite, 5%);
+$titanBright: lighten($titanwhite, 10%);
+$titanDark: darken($titanwhite, 10%);
+$navyLight: lighten($navyblue, 10%);
+$navyDark: darken($navyblue, 10%);
+
+// Navigation
+$navigationBackground: $navyblue;
+$navigationHover: $navyLight;
+$navigationLink: $titanLight;
+$navigationLinkHover: $titanwhite;
+
+// ProjectWell
+$wellBackground: $titanDark;
+$wellHover: $titanwhite;
+$wellBoxShadow: $shadow;
+
+// Tic-Tac-Toe
+$tileHover: $titanLight;
+$tileClick: $titanBright;
