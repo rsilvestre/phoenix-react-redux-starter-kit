@@ -13,7 +13,7 @@
   "license": "ISC",
   "private": true,
   "engines": {
-    "node": "6.9.x",
+    "node": "7.1.x",
     "npm": "3.10.x"
   },
   "devDependencies": {

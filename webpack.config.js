@@ -12,7 +12,9 @@ module.exports = {
   },
   output: {
     path: './priv/static',
-    filename: 'js/app.js'
+    filename: 'js/[name].js',
+    publicPath: '/',
+    chunkFilename: "js/[id].[name].js"
   },
   resolve: {
     moduleDirectories: [__dirname + '/web/static/js', 'node_modules'],

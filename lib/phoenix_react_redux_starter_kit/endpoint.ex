@@ -9,7 +9,8 @@ defmodule PhoenixReactReduxStarterKit.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :phoenix_react_redux_starter_kit, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images favicon.ico robots.txt),
+    only_matching: ~w(js)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
