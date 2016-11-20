@@ -8,13 +8,19 @@ module.exports = {
   target  : 'web',
   devtool: 'source-map',
   entry: {
-    'app': [ __dirname + '/web/static/css/app.scss', __dirname + '/web/static/js/app.js' ]
+    'app': [ __dirname + '/web/static/css/app.scss', __dirname + '/web/static/js/app.js' ],
+    'vendor': config.compiler_vendors
   },
   output: {
     path: './priv/static',
     filename: 'js/[name].js',
     publicPath: '/',
     chunkFilename: "js/[id].[name].js"
+  },
+  externals: {
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+    'react/addons': true
   },
   resolve: {
     moduleDirectories: [__dirname + '/web/static/js', 'node_modules'],
