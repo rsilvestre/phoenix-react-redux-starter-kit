@@ -69,6 +69,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('css/app.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin(config.globals),
