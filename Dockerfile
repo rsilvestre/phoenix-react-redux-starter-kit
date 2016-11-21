@@ -10,7 +10,7 @@ ENV LC_ALL en_US.UTF-8
 
 # wget for convenience, use curl if you want to
 RUN apt-get update
-RUN apt-get -y -q install wget curl
+RUN apt-get -y -q install wget curl bzip2
 
 # add erlang otp
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
@@ -19,12 +19,31 @@ RUN apt-get update
 RUN apt-get install -y -q imagemagick esl-erlang elixir
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install nodejs
-ADD . /app
+
+# ADD . /app
+ADD config /app/config
+ADD lib /app/lib
+ADD priv/gettext /app/priv/gettext
+ADD web /app/web
+ADD .buildpacks /app
+ADD .travis.yml /app
+ADD compile /app
+ADD config.js /app
+ADD elixir_buildpack.config /app
+ADD environments.js /app
+ADD mix.exs /app
+ADD package.json /app
+ADD phoenix_static_buildpack.config /app
+ADD webpack.config.js /app
 WORKDIR /app
-RUN npm install node-sass
-RUN npm install
+
+# install deps
 RUN mix local.hex --force
+RUN mix local.rebar --force
 RUN mix deps.get
+RUN npm install
 RUN mix compile
-EXPOSE 4001
+
+# expose ports
+EXPOSE 4000
 CMD ["mix", "phoenix.server"]
