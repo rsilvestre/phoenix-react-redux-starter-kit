@@ -37,7 +37,7 @@ module.exports = {
       actions: __dirname + '/web/static/js/redux/modules'
     },
     root: __dirname + '/web/static/js',
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json', '.sass']
   },
   module: {
     loaders: [{
@@ -47,7 +47,7 @@ module.exports = {
       query: {
         cacheDirectory : true,
         plugins        : ['transform-runtime'],
-        presets        : ['es2015', 'react', 'stage-0']
+        presets        : ['es2015', 'react', 'stage-2', 'stage-0']
       }
     }, {
       test: /\.css$/,
@@ -57,6 +57,12 @@ module.exports = {
       loader: ExtractTextPlugin.extract(
         'style',
         'css!sass?includePaths[]=' + __dirname + '/web/static/css'
+      )
+    }, {
+      test: /\.sass$/,
+      loader: ExtractTextPlugin.extract(
+        'style',
+        'css!sass?indentedSyntax&includePaths[]=' + __dirname +  '/node_modules'
       )
     },
       { test: /\.woff(\?.*)?$/,  loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff' },
@@ -69,7 +75,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('css/app.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin(config.globals),
@@ -77,7 +82,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './web/static/assets'},
       { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
-        to: 'js/phoenix_html.js'
+        to: 'phoenix_html.js'
       }
     ])
   ]
