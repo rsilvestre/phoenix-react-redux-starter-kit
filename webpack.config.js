@@ -3,12 +3,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./config')
 
-module.exports = {
+const __DEV__ = config.globals.__DEV__
+const __PROD__ = config.globals.__PROD__
+const __TEST__ = config.globals.__TEST__
+
+webpackConfig = {
   name    : 'client',
   target  : 'web',
   devtool: 'source-map',
   entry: {
-    'app': [ __dirname + '/web/static/css/app.scss', __dirname + '/web/static/js/app.js' ],
+    'app': [
+      __dirname + '/web/static/css/app.scss',
+      __dirname + '/web/static/js/app.js'
+    ],
     'vendor': config.compiler_vendors
   },
   output: {
@@ -50,6 +57,9 @@ module.exports = {
         presets        : ['es2015', 'react', 'stage-2', 'stage-0']
       }
     }, {
+      test   : /\.json$/,
+      loader : 'json'
+    }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css')
     }, {
@@ -75,15 +85,65 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin(config.globals),
     new ExtractTextPlugin('css/app.css'),
     new CopyWebpackPlugin([
       { from: './web/static/assets'},
       { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
-        to: 'phoenix_html.js'
+        to: 'js/phoenix_html.js'
       }
     ])
   ]
 }
+
+// Ensure that the compiler exits on errors during testing so that
+// they do not get skipped and misreported.
+if (__TEST__ && !argv.watch) {
+  webpackConfig.plugins.push(function () {
+    this.plugin('done', function (stats) {
+      const errors = []
+      if (stats.compilation.errors.length) {
+        // Log each of the warnings
+        stats.compilation.errors.forEach(function (error) {
+          errors.push(error.message || error)
+        })
+
+        // Pretend no assets were generated. This prevents the tests
+        // from running making it clear that there were warnings.
+        throw new Error(errors)
+      }
+    })
+  })
+}
+
+if (__DEV__) {
+  console.log('Enable plugins for live development (HMR, NoErrors).')
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  )
+} else if (__PROD__) {
+  console.log('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  webpackConfig.plugins.push(
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress : {
+        unused    : true,
+        dead_code : true,
+        warnings  : false
+      }
+    })
+  )
+}
+
+// Don't split bundles during testing, since we only want import one bundle
+if (!__TEST__) {
+  webpackConfig.plugins.push(
+    new webpack.optimize.CommonsChunkPlugin({
+      names : ['vendor']
+    })
+  )
+}
+
+module.exports = webpackConfig
