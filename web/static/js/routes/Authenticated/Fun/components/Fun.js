@@ -13,9 +13,16 @@ export class Fun extends React.Component {
 
   render () {
     const { fun } = this.props
-    return (<div style={{ margin: '0 auto' }}>
-        <div>{fun}</div>
-        <input type='text' value={fun} onChange={::this.updateField}/>
+    const text = fun.length > 0 ? fun : 'Write your text in the text input field'
+    return (
+      <div className='row'>
+        <div className='col-sm-offset-3 col-sm-6'>
+          <div className='form-group'>
+            <div className='jumbotron'>{text}</div>
+            <input type='text' value={fun} onChange={::this.updateField} className='form-control'
+              placeholder='Write your text here' />
+          </div>
+        </div>
       </div>
     )
   }
