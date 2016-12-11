@@ -19,6 +19,11 @@ defmodule PhoenixReactReduxStarterKit.Web do
   def model do
     quote do
       # Define common model functionality
+      use Ecto.Schema
+
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 
@@ -57,6 +62,10 @@ defmodule PhoenixReactReduxStarterKit.Web do
     quote do
       use Phoenix.Channel
       import PhoenixReactReduxStarterKit.Gettext
+
+      alias PhoenixReactReduxStarterKit.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

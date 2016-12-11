@@ -32,3 +32,18 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Configure your databaser
+config :phoenix_react_redux_starter_kit, ecto_repos: [PhoenixReactReduxStarterKit.Repo]
+
+config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "phoenix_react_redux_starter_kit",
+  hostname: "localhost",
+  pool_size: 10
+
+# Guardian configuration
+config :guardian, Guardian,
+  secret_key: "W9cDv9fjPtsYv2gItOcFb5PzmRzqGkrOsJGmby0KpBOlHJIlhxMKFmIlcCG9PVFQ"

@@ -4,12 +4,14 @@ defmodule PhoenixReactReduxStarterKit do
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec
+    import Supervisor.Spec, warn: false
 
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
       supervisor(PhoenixReactReduxStarterKit.Endpoint, []),
+      # Start the Ecto repository
+      worker(PhoenixReactReduxStarterKit.Repo, []),
       # Start your own worker by calling: PhoenixReactReduxStarterKit.Worker.start_link(arg1, arg2, arg3)
       # worker(PhoenixReactReduxStarterKit.Worker, [arg1, arg2, arg3]),
     ]

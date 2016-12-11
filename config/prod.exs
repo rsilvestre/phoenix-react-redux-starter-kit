@@ -19,6 +19,16 @@ config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Configure your database
+config :phoenix_trello, PhoenixTrello.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 20
+
+# Configure guardian
+config :guardian, Guardian,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY")
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

@@ -8,6 +8,7 @@ use Mix.Config
 # Configures the endpoint
 config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Endpoint,
   url: [host: "localhost"],
+  root: Path.dirname(__DIR__),
   secret_key_base: "loizpZq8Y5KQ0Jarltfs/CC2KayDdDUnkORWMVA+CQVnXl3utV+3roKuYIF56Zsu",
   render_errors: [view: PhoenixReactReduxStarterKit.ErrorView, accepts: ~w(html json)],
   pubsub: [name: PhoenixReactReduxStarterKit.PubSub,
@@ -21,3 +22,15 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# Configure phoenix generators
+config :phoenix, :generators,
+  migration: true,
+  binary_id: false
+
+# Configure guardian
+config :guardian, Guardian,
+  issuer: "PhoenixReactReduxStarterkit",
+  ttl: { 3, :days },
+  verify_issuer: true,
+  serializer: PhoenixReactReduxStarterKit.GuardianSerializer
