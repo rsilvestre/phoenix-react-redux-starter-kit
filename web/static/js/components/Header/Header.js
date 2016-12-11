@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import ReactGravatar    from 'react-gravatar';
+import ReactGravatar from 'react-gravatar';
 import './Header.scss'
 
 export class Header extends React.Component {
@@ -20,9 +20,11 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <a className="current-user">
-          <ReactGravatar email={currentUser.email} https /> {fullName}
-        </a>
+        <Link className='current-user'>
+          <ReactGravatar className='react-gravatar' email={currentUser.email} protocol='https://' size={18} />
+          {' '}
+          {fullName}
+        </Link>
       </li>
     )
   }
@@ -34,9 +36,21 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <a href="#" onClick={::this._handleSignOutClick}><i className="fa fa-sign-out"/> Sign out</a>
+        <a href='#' onClick={::this._handleSignOutClick}><i className='fa fa-sign-out'/> Sign out</a>
       </li>
     )
+  }
+
+  _renderSignInLink() {
+    if (this.props.currentUser) {
+      return false
+    }
+
+    return (
+    <li>
+      <Link to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in'/> Sign in</Link>
+    </li>
+  )
   }
 
   _renderSignUpLink() {
@@ -46,7 +60,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <Link to='/sign_up'><i className="fa fa-sign-up"/> Sign up</Link>
+        <Link to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up'/> Sign up</Link>
       </li>
     )
   }
@@ -62,34 +76,52 @@ export class Header extends React.Component {
   render () {
     return (
       <div>
-        <header className="main-header">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/"><i className="fa fa-columns"/>Boards</Link>
-              </li>
-            </ul>
-          </nav>
-          <nav className="right">
-            <ul>
-              {this._renderCurrentUser()}
-              {this._renderSignOutLink()}
-              {this._renderSignUpLink()}
-            </ul>
+        <nav className='navbar navbar-custom navbar-fixed-top'>
+          <div className='container'>
+            <div className='navbar-header'>
+              <button type='button' className='navbar-toggle collapsed'
+                data-toggle='collapse'
+                data-target='#bs-example-navbar-collapse-1'
+                aria-expanded='false'>
+                <span className='sr-only'>Toggle navigation</span>
+                <span className='icon-bar'></span>
+                <span className='icon-bar'></span>
+                <span className='icon-bar'></span>
+              </button>
+              <IndexLink className='navbar-brand' to='/'>Brand</IndexLink>
+            </div>
+            <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+              <ul className='nav navbar-nav'>
+                <li>
+                  <IndexLink to='/' activeClassName='route--active'>
+                    Home
+                  </IndexLink>
+                </li>
+                <li>
+                  <Link to='/counter' activeClassName='route--active'>
+                    Counter
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/fun' activeClassName='route--active'>
+                    Fun
+                  </Link>
+                </li>
+              </ul>
+              <ul className='nav navbar-nav navbar-right'>
+                {this._renderCurrentUser()}
+                {this._renderSignOutLink()}
+                {this._renderSignInLink()}
+                {this._renderSignUpLink()}
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <header className='main-header'>
+          <nav className='right'>
           </nav>
         </header>
         <h1>Phoenix React Redux Starter Kit</h1>
-        <IndexLink to='/' activeClassName='route--active'>
-          Home
-        </IndexLink>
-        {' · '}
-        <Link to='/counter' activeClassName='route--active'>
-          Counter
-        </Link>
-        {' · '}
-        <Link to='/fun' activeClassName='route--active'>
-          Fun
-        </Link>
       </div>
     )
   }

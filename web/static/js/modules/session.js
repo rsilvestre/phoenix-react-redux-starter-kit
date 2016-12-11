@@ -19,7 +19,7 @@ export const setCurrentUser = (dispatch, user) => {
   const socket = new Socket('/socket', {
     params: { token: localStorage.getItem('phoenixAuthToken') },
     logger: (kind, msg, data) => {
-      console.log(`${kind}: ${msg}`, data)
+      //console.log(`${kind}: ${msg}`, data)
     }
   })
 
@@ -69,7 +69,7 @@ export const signIn = ({email, password}) => {
 
 export const getCurrentUser = () => {
   return (dispatch) => {
-    return httpGet('/api/v1/current_user')
+    httpGet('/api/v1/current_user')
     .then((data) => {
       setCurrentUser(dispatch, data)
     })

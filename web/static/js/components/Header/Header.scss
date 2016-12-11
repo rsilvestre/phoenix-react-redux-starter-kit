@@ -1,4 +1,22 @@
 .route--active {
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.navbar-custom {
+  background-color:#d8d4e8;
+  color:#222222;
+  border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+  color:#222222;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+  color: #222222;
+  background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+  color:#5E5E5E;
 }

@@ -9,7 +9,7 @@ export class New extends React.Component {
     error: React.PropTypes.string
   }
 
-  componentDidMount () {
+  static componentDidMount () {
     setDocumentTitle('Sign in')
   }
 
@@ -29,7 +29,7 @@ export class New extends React.Component {
     }
 
     return (
-      <div className="error">
+      <div className='error'>
         {error}
       </div>
     )
@@ -38,19 +38,28 @@ export class New extends React.Component {
   render () {
     return (
       <div className='view-container sessions new'>
-        <main>
-          <form onSubmit={::this._handleSubmit}>
-            {::this._renderError()}
-            <div className="field">
-              <input ref="email" type="Email" placeholder="Email" required="true" defaultValue="john@phoenix-trello.com"/>
+        <form onSubmit={::this._handleSubmit} className='form-horizontal'>
+          {::this._renderError()}
+          <div className='form-group'>
+            <label htmlFor='email' className='col-sm-4 control-label'>Email</label>
+            <div className='col-sm-4'>
+              <input id='email' ref='email' type='email' defaultValue='john@phoenix-trello.com'
+                className='form-control' placeholder='Email' required={true} />
             </div>
-            <div className="field">
-              <input ref="password" type="password" placeholder="Password" required="true" defaultValue="12345678"/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password' className='col-sm-4 control-label'>Password</label>
+            <div className='col-sm-4'>
+              <input id='password' ref='password' type='password' defaultValue='12345678'
+                className='form-control' placeholder='Password' required={true} />
             </div>
-            <button type="submit">Sign in</button>
-          </form>
-          <Link to="/sign_up">Create new account</Link>
-        </main>
+          </div>
+          <div className='form-group'>
+            <div className='col-sm-offset-2 col-sm-8'>
+              <button type='submit' className='btn btn-default'>Sign in</button>
+            </div>
+          </div>
+        </form>
       </div>
     )
   }

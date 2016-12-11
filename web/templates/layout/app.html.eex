@@ -16,12 +16,6 @@
 
   <body>
     <div id="root" style="height: 100%"></div>
-    <footer id="main_footer">
-      <small>
-        <a href="https://phoenix-react-redux-starter-kit.com/" target="_blank">Phoenix React Redux Starter Kit</a> tribute for educational purposes
-        crafted with ♥ for <a href="https://www.wilthard.be/">Wilthard</a>
-        by <a href="https://twitter.com/rsilvestre">@rsilvestre</a></small>
-    </footer>
     <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
