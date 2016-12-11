@@ -8,7 +8,7 @@ export class New extends React.Component {
     signUp: React.PropTypes.func.isRequired
   }
 
-  componentDidMount () {
+  static componentDidMount () {
     setDocumentTitle('Sign up')
   }
 
@@ -30,33 +30,54 @@ export class New extends React.Component {
   render () {
     const { errors } = this.props
     return (
-      <div className="view-container registrations new">
-        <main>
-          <form onSubmit={::this._handleSubmit}>
-            <div className="field">
-              <input ref="firstName" type="text" placeholder="First name" required={true} />
+      <div className='view-container registrations new'>
+        <form onSubmit={::this._handleSubmit} className='form-horizontal'>
+          <div className='form-group'>
+            <label htmlFor='firstname' className="col-sm-4 control-label">First Name</label>
+            <div className='col-sm-5'>
+              <input id='firstname' ref='firstName' type='text'
+                className='form-control' placeholder='First name' required={true} />
               {renderErrorsFor(errors, 'first_name')}
             </div>
-            <div className="field">
-              <input ref="lastName" type="text" placeholder="Last name" required={true} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='lastname' className="col-sm-4 control-label">Last Name</label>
+            <div className='col-sm-5'>
+              <input id='lastname' ref='lastName' type='text'
+                className='form-control' placeholder='Last name' required={true} />
               {renderErrorsFor(errors, 'last_name')}
             </div>
-            <div className="field">
-              <input ref="email" type="email" placeholder="Email" required={true} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='email' className="col-sm-4 control-label">Email</label>
+            <div className='col-sm-5'>
+              <input id='email' ref='email' type='email'
+                className='form-control' placeholder='Email' required={true} />
               {renderErrorsFor(errors, 'email')}
             </div>
-            <div className="field">
-              <input ref="password" type="password" placeholder="Password" required={true} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password' className="col-sm-4 control-label">Password</label>
+            <div className='col-sm-5'>
+              <input id='password' ref='password' type='password'
+                className='form-control' placeholder='Password' required={true} />
               {renderErrorsFor(errors, 'password')}
             </div>
-            <div className="field">
-              <input ref="passwordConfirmation" type="password" placeholder="Confirm password" required={true} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='passwordConfirmation' className="col-sm-4 control-label">Password Confirmation</label>
+            <div className='col-sm-5'>
+              <input id='passwordConfirmation' ref='passwordConfirmation'
+                type='password' className='form-control' placeholder='Confirm password' required={true} />
               {renderErrorsFor(errors, 'password_confirmation')}
             </div>
-            <button type="submit">Sign up</button>
-          </form>
-          <Link to="/sign_in">Sign in</Link>
-        </main>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-offset-2 col-sm-8">
+              <button type="submit" className="btn btn-default">Sign up</button>
+            </div>
+          </div>
+        </form>
       </div>
     )
   }
