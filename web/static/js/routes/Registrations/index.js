@@ -6,7 +6,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       const New = require('./containers/NewContainer').default
       const reducer = require('./modules/registration').default
-      injectReducer(store, { key: 'registration', reducer})
+      injectReducer(store, { key: 'registration', reducer })
       cb(null, New)
     }, 'sign_up')
   }

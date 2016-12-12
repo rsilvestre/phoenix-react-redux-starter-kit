@@ -7,9 +7,9 @@ export class Auth extends React.Component {
     signupPage: React.PropTypes.func.isRequired
   }
 
-  render() {
-    const {children} = this.props
-    
+  render () {
+    const { children } = this.props
+
     return (
       <div>
         {children}
@@ -17,6 +17,5 @@ export class Auth extends React.Component {
     )
   }
 }
-
 
 export default Auth

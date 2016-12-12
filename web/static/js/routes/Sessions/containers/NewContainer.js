@@ -7,8 +7,8 @@ const mapDispatchToProps = {
   signIn: (data) => signIn(data)
 }
 
-const mapStateToProps = (state) => ({
-  error: state.error
+const mapStateToProps = ({ session }) => ({
+  error: session.error
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(New)

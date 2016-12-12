@@ -3,16 +3,16 @@ import fetch from 'isomorphic-fetch'
 
 const defaultHeaders = {
   Accept: 'application/json',
-  'Content-Type': 'application/json',
-};
-
-function buildHeaders() {
-  const authToken = localStorage.getItem('phoenixAuthToken');
-
-  return { ...defaultHeaders, Authorization: authToken };
+  'Content-Type': 'application/json'
 }
 
-export function checkStatus(response) {
+const buildHeaders = () => {
+  const authToken = localStorage.getItem('phoenixAuthToken')
+
+  return { ...defaultHeaders, Authorization: authToken }
+}
+
+export function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   }
@@ -48,25 +48,25 @@ export const httpPost = (url, data) => {
 export const httpDelete = (url) => {
   return fetch(url, {
     method: 'delete',
-    headers: buildHeaders(),
+    headers: buildHeaders()
   })
   .then(checkStatus)
   .then(parseJSON)
 }
 
 export const setDocumentTitle = (title) => {
-  document.title = `${title} | Phoenix React Redux Starter Kit`;
+  document.title = `${title} | Phoenix React Redux Starter Kit`
 }
 
 export const renderErrorsFor = (errors, ref) => {
   if (!errors) {
-    return false;
+    return false
   }
 
   return errors.map((error, index) => {
     if (error[ref]) {
       return (
-        <div key={index} className="error">
+        <div key={index} className='error'>
           {error[ref]}
         </div>
       )

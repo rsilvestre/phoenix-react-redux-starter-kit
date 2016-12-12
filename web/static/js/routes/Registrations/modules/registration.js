@@ -1,45 +1,44 @@
 import { push } from 'react-router-redux'
 import { httpPost } from '../../../utils'
-import { sessionError } from '../../../modules/session'
+import { setCurrentUser } from '../../../modules/session'
 
-export const CURRENT_USER = 'registration/CURRENT_USER'
+export const REGISTRATION_ERROR = 'registration/REGISTRATION_ERROR'
 
 const initialState = {
   errors: null
 }
 
-export const receiveUser = ({user}) => ({
-  type: CURRENT_USER,
-  payload: user
+export const registrationError = (errors) => ({
+  type: REGISTRATION_ERROR,
+  payload: errors
 })
 
 export const signUp = (data) => {
   return (dispatch) => {
-    httpPost('/api/v1/registrations', {user: data})
-    .then((data) => {
-      localStorage.setItem('phoenixAuthToken', data.jwt)
+    httpPost('/api/v1/registrations', { user: data })
+    .then(({ user, jwt }) => {
+      localStorage.setItem('phoenixAuthToken', jwt)
 
-      dispatch(receiveUser(data))
+      dispatch(setCurrentUser(dispatch, user))
       dispatch(push('/'))
     })
     .catch((error) => {
       error.response.json()
-      .then((errorJSON) => {
-        dispatch(sessionError(errorJSON))
+      .then(({ errors }) => {
+        dispatch(registrationError(errors))
       })
     })
   }
 }
 
 export const actions = {
-  receiveUser,
   signUp
 }
 
 const ACTION_HANDLERS = {
-  [CURRENT_USER]: (state = initialState, { payload: errors }) => ({
+  [REGISTRATION_ERROR]: (state = initialState, { errors }) => ({
     ...state,
-    errors: errors
+    errors
   })
 }
 

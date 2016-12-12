@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import autobind from 'autobind-decorator'
 
 import { setDocumentTitle } from '../../../utils'
 
@@ -13,15 +13,16 @@ export class New extends React.Component {
     setDocumentTitle('Sign in')
   }
 
+  @autobind
   _handleSubmit (e) {
     e.preventDefault()
 
     const { signIn } = this.props
     const { email, password } = this.refs
-    signIn({email: email.value, password: password.value})
+    signIn({ email: email.value, password: password.value })
   }
 
-  _renderError() {
+  _renderError () {
     const { error } = this.props
 
     if (!error) {
@@ -38,20 +39,20 @@ export class New extends React.Component {
   render () {
     return (
       <div className='view-container sessions new'>
-        <form onSubmit={::this._handleSubmit} className='form-horizontal'>
+        <form onSubmit={this._handleSubmit} className='form-horizontal'>
           {::this._renderError()}
           <div className='form-group'>
             <label htmlFor='email' className='col-sm-4 control-label'>Email</label>
             <div className='col-sm-4'>
               <input id='email' ref='email' type='email' defaultValue='john@phoenix-trello.com'
-                className='form-control' placeholder='Email' required={true} />
+                className='form-control' placeholder='Email' required='required' />
             </div>
           </div>
           <div className='form-group'>
             <label htmlFor='password' className='col-sm-4 control-label'>Password</label>
             <div className='col-sm-4'>
               <input id='password' ref='password' type='password' defaultValue='12345678'
-                className='form-control' placeholder='Password' required={true} />
+                className='form-control' placeholder='Password' required='required' />
             </div>
           </div>
           <div className='form-group'>
