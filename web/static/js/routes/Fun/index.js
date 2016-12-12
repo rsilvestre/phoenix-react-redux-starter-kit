@@ -6,7 +6,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       const Fun = require('./containers/FunContainer').default
       const reducer = require('./modules/fun').default
-      injectReducer(store, { key: 'fun', reducer})
+      injectReducer(store, { key: 'fun', reducer })
       cb(null, Fun)
     }, 'fun')
   }
