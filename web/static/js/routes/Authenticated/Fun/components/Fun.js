@@ -1,4 +1,5 @@
 import React from 'react'
+import autobind from 'autobind-decorator'
 
 export class Fun extends React.Component {
   static propTypes = {
@@ -6,8 +7,9 @@ export class Fun extends React.Component {
     updateField: React.PropTypes.func.isRequired
   }
 
-  updateField (e) {
-    const {updateField} = this.props
+  @autobind
+  _updateField (e) {
+    const { updateField } = this.props
     updateField(e.target.value)
   }
 
@@ -19,7 +21,7 @@ export class Fun extends React.Component {
         <div className='col-sm-offset-3 col-sm-6'>
           <div className='form-group'>
             <div className='jumbotron'>{text}</div>
-            <input type='text' value={fun} onChange={::this.updateField} className='form-control'
+            <input type='text' value={fun} onChange={this._updateField} className='form-control'
               placeholder='Write your text here' />
           </div>
         </div>

@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { browserHistory, Router } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-intl-redux'
 
-class AppContainer extends Component {
+class AppContainer extends React.Component {
   static propTypes = {
-    routes : PropTypes.object.isRequired,
-    store  : PropTypes.object.isRequired
+    routes : React.PropTypes.object.isRequired,
+    store  : React.PropTypes.object.isRequired
   }
 
-  shouldComponentUpdate () {
+  static shouldComponentUpdate () {
     return false
   }
 

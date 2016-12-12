@@ -17,8 +17,8 @@ const mapDispatchToProps = {
   doubleAsync
 }
 
-const mapStateToProps = (state) => ({
-  counter : state.counter
+const mapStateToProps = ({ counter }) => ({
+  counter
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

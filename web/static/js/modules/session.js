@@ -1,6 +1,6 @@
 import { push } from 'react-router-redux'
 import { Socket } from 'phoenix'
-import { httpGet, httpPost, httpDelete }  from '../utils'
+import { httpGet, httpPost, httpDelete } from '../utils'
 
 export const SESSION_ERROR = 'sessions/SESSION_ERROR'
 export const CURRENT_USER = 'sessions/CURRENT_USER'
@@ -19,7 +19,7 @@ export const setCurrentUser = (dispatch, user) => {
   const socket = new Socket('/socket', {
     params: { token: localStorage.getItem('phoenixAuthToken') },
     logger: (kind, msg, data) => {
-      //console.log(`${kind}: ${msg}`, data)
+      // console.log(`${kind}: ${msg}`, data)
     }
   })
 
@@ -27,14 +27,14 @@ export const setCurrentUser = (dispatch, user) => {
 
   const channel = socket.channel(`users:${user.id}`)
 
-  if (channel.state != 'joined') {
+  if (channel.state !== 'joined') {
     channel.join().receive('ok', () => {
       dispatch(currentUser(user, socket, channel))
     })
   }
 }
 
-export const sessionError = ({errors}) => ({
+export const sessionError = ({ errors }) => ({
   type: SESSION_ERROR,
   payload: errors
 })
@@ -43,7 +43,7 @@ export const userSignOut = () => ({
   type: USER_SIGNED_OUT
 })
 
-export const signIn = ({email, password}) => {
+export const signIn = ({ email, password }) => {
   return (dispatch) => {
     const data = {
       session: {
@@ -53,9 +53,9 @@ export const signIn = ({email, password}) => {
     }
 
     httpPost('/api/v1/sessions', data)
-    .then((data) => {
-      localStorage.setItem('phoenixAuthToken', data.jwt)
-      setCurrentUser(dispatch, data.user)
+    .then(({ user, jwt }) => {
+      localStorage.setItem('phoenixAuthToken', jwt)
+      setCurrentUser(dispatch, user)
       dispatch(push('/'))
     })
     .catch((error) => {
@@ -114,7 +114,7 @@ const ACTION_HANDLERS = {
     ...state,
     errors: errors
   }),
-  [CURRENT_USER]: (state, {payload: { currentUser, socket, channel }}) => ({
+  [CURRENT_USER]: (state, { payload: { currentUser, socket, channel } }) => ({
     ...state,
     currentUser: currentUser,
     socket: socket,

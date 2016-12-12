@@ -1,6 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import ReactGravatar from 'react-gravatar';
+import autobind from 'autobind-decorator'
+import ReactGravatar from 'react-gravatar'
 import './Header.scss'
 
 export class Header extends React.Component {
@@ -9,7 +10,7 @@ export class Header extends React.Component {
     currentUser: React.PropTypes.object
   }
 
-  _renderCurrentUser() {
+  _renderCurrentUser () {
     const { currentUser } = this.props
 
     if (!currentUser) {
@@ -29,43 +30,44 @@ export class Header extends React.Component {
     )
   }
 
-  _renderSignOutLink() {
+  _renderSignOutLink () {
     if (!this.props.currentUser) {
       return false
     }
 
     return (
       <li>
-        <a href='#' onClick={::this._handleSignOutClick}><i className='fa fa-sign-out'/> Sign out</a>
+        <a href='#' onClick={this._handleSignOutClick}><i className='fa fa-sign-out' /> Sign out</a>
       </li>
     )
   }
 
-  _renderSignInLink() {
-    if (this.props.currentUser) {
-      return false
-    }
-
-    return (
-    <li>
-      <Link to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in'/> Sign in</Link>
-    </li>
-  )
-  }
-
-  _renderSignUpLink() {
+  _renderSignInLink () {
     if (this.props.currentUser) {
       return false
     }
 
     return (
       <li>
-        <Link to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up'/> Sign up</Link>
+        <Link to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in' /> Sign in</Link>
       </li>
     )
   }
 
-  _handleSignOutClick(e) {
+  _renderSignUpLink () {
+    if (this.props.currentUser) {
+      return false
+    }
+
+    return (
+      <li>
+        <Link to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up' /> Sign up</Link>
+      </li>
+    )
+  }
+
+  @autobind
+  _handleSignOutClick (e) {
     const { signOut } = this.props
 
     e.preventDefault()
@@ -79,18 +81,9 @@ export class Header extends React.Component {
         <nav className='navbar navbar-custom navbar-fixed-top'>
           <div className='container'>
             <div className='navbar-header'>
-              <button type='button' className='navbar-toggle collapsed'
-                data-toggle='collapse'
-                data-target='#bs-example-navbar-collapse-1'
-                aria-expanded='false'>
-                <span className='sr-only'>Toggle navigation</span>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
-              </button>
               <IndexLink className='navbar-brand' to='/'>Brand</IndexLink>
             </div>
-            <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+            <div className='collapse navbar-collapse'>
               <ul className='nav navbar-nav'>
                 <li>
                   <IndexLink to='/' activeClassName='route--active'>
@@ -117,10 +110,6 @@ export class Header extends React.Component {
             </div>
           </div>
         </nav>
-        <header className='main-header'>
-          <nav className='right'>
-          </nav>
-        </header>
         <h1>Phoenix React Redux Starter Kit</h1>
       </div>
     )

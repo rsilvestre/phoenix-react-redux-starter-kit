@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../components/Header'
+import HeaderContainer from '../../containers/HeaderContainer'
 import LanguageSelectorController from '../../containers/LanguageSelectorController'
 import Footer from '../../components/Footer/Footer'
 import './CoreLayout.scss'
@@ -7,7 +7,7 @@ import '../../styles/core.scss'
 
 export const CoreLayout = ({ children }) => (
   <div className='container text-center'>
-    <Header />
+    <HeaderContainer />
     <div className='core-layout__viewport'>
       {children}
     </div>

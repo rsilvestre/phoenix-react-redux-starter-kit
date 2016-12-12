@@ -4,11 +4,11 @@ import { signOut } from '../modules/session'
 import Header from '../components/Header'
 
 const mapDispatchToProps = {
-  signOut: () => signOut()
+  signOut
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser
+const mapStateToProps = ({ session }) => ({
+  currentUser: session.currentUser
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

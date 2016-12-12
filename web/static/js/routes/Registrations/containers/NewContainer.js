@@ -7,8 +7,8 @@ const mapDispatchToProps = {
   signUp: (data) => signUp(data)
 }
 
-const mapStateToProps = (state) => ({
-  errors: state.registration.errors
+const mapStateToProps = ({ registration }) => ({
+  errors: registration.errors
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(New)

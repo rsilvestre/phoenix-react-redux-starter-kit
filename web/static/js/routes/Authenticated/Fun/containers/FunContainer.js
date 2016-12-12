@@ -16,8 +16,8 @@ const mapDispatchToProps = {
   updateField : (value) => updateField(value)
 }
 
-const mapStateToProps = (state) => ({
-  fun : state.fun
+const mapStateToProps = ({ fun }) => ({
+  fun
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
