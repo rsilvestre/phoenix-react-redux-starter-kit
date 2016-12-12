@@ -1,4 +1,4 @@
-/*eslint-disable max-len,quotes*/
+/* eslint-disable max-len,quotes */
 export default {
   "home.welcome": "Welcome to the Phoenix React Redux Starter Kit",
   "home.sampleCounter": "Sample Counter:",
