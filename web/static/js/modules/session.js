@@ -110,10 +110,6 @@ export const actions = {
 }
 
 const ACTION_HANDLERS = {
-  [CURRENT_USER]: (state, { payload: { errors } }) => ({
-    ...state,
-    errors: errors
-  }),
   [CURRENT_USER]: (state, { payload: { currentUser, socket, channel } }) => ({
     ...state,
     currentUser: currentUser,
@@ -122,7 +118,7 @@ const ACTION_HANDLERS = {
     error: null
   }),
   [USER_SIGNED_OUT]: (state) => initialState,
-  [SESSION_ERROR]: (state, { payload: { error } }) => ({ ...state, error: error })
+  [SESSION_ERROR]: (state, { payload: { error } }) => ({ ...state, error })
 }
 
 const initialState = {
