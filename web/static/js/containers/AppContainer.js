@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router'
-import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
+import { Provider } from 'react-intl-redux'
 
 class AppContainer extends Component {
   static propTypes = {
