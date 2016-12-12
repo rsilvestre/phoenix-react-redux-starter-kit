@@ -1,11 +1,11 @@
 // NOTE: The contents of this file will only be executed if
-// you uncomment its entry in "web/static/js/app.js".
+// you uncomment its entry in 'web/static/js/app.js'.
 
 // To use Phoenix channels, the first step is to import Socket
-// and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "deps/phoenix/web/static/js/phoenix"
+// and connect at the socket path in 'lib/my_app/endpoint.ex':
+import { Socket } from 'deps/phoenix/web/static/js/phoenix'
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket('/socket', { params: { token: window.userToken } })
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -13,7 +13,7 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // If the current user exists you can assign the user's token in
 // the connection for use in the layout.
 //
-// In your "web/router.ex":
+// In your 'web/router.ex':
 //
 //     pipeline :browser do
 //       ...
@@ -23,7 +23,7 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 //
 //     defp put_user_token(conn, _) do
 //       if current_user = conn.assigns[:current_user] do
-//         token = Phoenix.Token.sign(conn, "user socket", current_user.id)
+//         token = Phoenix.Token.sign(conn, 'user socket', current_user.id)
 //         assign(conn, :user_token, token)
 //       else
 //         conn
@@ -31,16 +31,16 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 //     end
 //
 // Now you need to pass this token to JavaScript. You can do so
-// inside a script tag in "web/templates/layout/app.html.eex":
+// inside a script tag in 'web/templates/layout/app.html.eex':
 //
-//     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
+//     <script>window.userToken = '<%= assigns[:user_token] %>';</script>
 //
-// You will need to verify the user token in the "connect/2" function
-// in "web/channels/user_socket.ex":
+// You will need to verify the user token in the 'connect/2' function
+// in 'web/channels/user_socket.ex':
 //
-//     def connect(%{"token" => token}, socket) do
+//     def connect(%{'token' => token}, socket) do
 //       # max_age: 1209600 is equivalent to two weeks in seconds
-//       case Phoenix.Token.verify(socket, "user socket", token, max_age: 1209600) do
+//       case Phoenix.Token.verify(socket, 'user socket', token, max_age: 1209600) do
 //         {:ok, user_id} ->
 //           {:ok, assign(socket, :user, user_id)}
 //         {:error, reason} ->
@@ -54,9 +54,9 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel('topic:subtopic', {})
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  .receive('ok', resp => { console.log('Joined successfully', resp) })
+  .receive('error', resp => { console.log('Unable to join', resp) })
 
 export default socket

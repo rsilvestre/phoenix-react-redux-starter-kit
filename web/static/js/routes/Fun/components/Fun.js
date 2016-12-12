@@ -1,4 +1,5 @@
 import React from 'react'
+import autobind from 'autobind-decorator'
 
 export class Fun extends React.Component {
   static propTypes = {
@@ -6,16 +7,18 @@ export class Fun extends React.Component {
     updateField: React.PropTypes.func.isRequired
   }
 
-  updateField (e) {
-    const {updateField} = this.props
+  @autobind
+  _updateField (e) {
+    const { updateField } = this.props
     updateField(e.target.value)
   }
 
   render () {
     const { fun } = this.props
-    return (<div style={{ margin: '0 auto' }}>
+    return (
+      <div style={{ margin: '0 auto' }}>
         <div>{fun}</div>
-        <input type='text' value={fun} onChange={::this.updateField}/>
+        <input type='text' value={fun} onChange={this._updateField} />
       </div>
     )
   }
