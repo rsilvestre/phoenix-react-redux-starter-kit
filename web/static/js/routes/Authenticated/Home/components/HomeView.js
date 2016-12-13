@@ -1,6 +1,6 @@
 import React from 'react'
 import { defineMessages, FormattedMessage } from 'react-intl'
-import DuckImage from '../assets/Duck.jpg'
+import DuckImage from '../assets/Duck.png'
 import './HomeView.scss'
 
 const messages = defineMessages({

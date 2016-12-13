@@ -19,10 +19,13 @@ export const signUp = (data) => {
     .then(({ user, jwt }) => {
       localStorage.setItem('phoenixAuthToken', jwt)
 
-      dispatch(setCurrentUser(dispatch, user))
+      setCurrentUser(dispatch, user)
       dispatch(push('/'))
     })
     .catch((error) => {
+      if (error && error instanceof Error) {
+        return // console.log(error)
+      }
       error.response.json()
       .then(({ errors }) => {
         dispatch(registrationError(errors))

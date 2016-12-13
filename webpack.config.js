@@ -36,7 +36,6 @@ webpackConfig = {
       containers: __dirname + '/web/static/js/containers',
       routes: __dirname + '/web/static/js/containers',
       styles: __dirname + '/web/static/css',
-      static: __dirname + '/web/static/js/static',
       store: __dirname + '/web/static/js/store',
       components: __dirname + '/web/static/js/components',
       layouts: __dirname + '/web/static/js/layouts',
@@ -81,7 +80,8 @@ webpackConfig = {
       { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
       { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
       { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-      { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
+      { test: /\.jpg$/,          loader: 'url?limit=8192' },
+      { test: /\.png$/,          loader: "url-loader?mimetype=image/png" }
     ]
   },
   plugins: [
@@ -117,13 +117,13 @@ if (__TEST__ && !argv.watch) {
 }
 
 if (__DEV__) {
-  console.log('Enable plugins for live development (HMR, NoErrors).')
+  console.log('Enabling plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   )
 } else if (__PROD__) {
-  console.log('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  console.log('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),

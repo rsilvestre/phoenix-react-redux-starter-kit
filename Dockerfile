@@ -19,6 +19,7 @@ RUN apt-get update
 RUN apt-get install -y -q imagemagick esl-erlang elixir
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install nodejs
+RUN npm install -g yarn
 
 # ADD . /app
 ADD config /app/config
@@ -41,7 +42,7 @@ WORKDIR /app
 RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN mix deps.get
-RUN npm install
+RUN yarn install
 RUN mix compile
 
 # expose ports
