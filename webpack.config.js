@@ -116,13 +116,13 @@ if (__TEST__ && !argv.watch) {
 }
 
 if (__DEV__) {
-  console.log('Enable plugins for live development (HMR, NoErrors).')
+  console.log('Enabling plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   )
 } else if (__PROD__) {
-  console.log('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  console.log('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
