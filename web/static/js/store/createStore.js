@@ -15,10 +15,12 @@ export default (initialState = {}) => {
   // Store Enhancers
   // ======================================================
   const enhancers = []
+  let composeEnhancers = compose
+
   if (__DEV__) {
-    const devToolsExtension = window.devToolsExtension
-    if (typeof devToolsExtension === 'function') {
-      enhancers.push(devToolsExtension())
+    const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    if (typeof composeWithDevToolsExtension === 'function') {
+      composeEnhancers = composeWithDevToolsExtension
     }
   }
 
@@ -28,7 +30,7 @@ export default (initialState = {}) => {
   const store = createStore(
     makeRootReducer(),
     initialState,
-    compose(
+    composeEnhancers(
       applyMiddleware(...middleware),
       ...enhancers
     )
