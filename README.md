@@ -4,14 +4,17 @@ The project is based on [`react-redux-starter-kit`](https://github.com/davezuko/
 The main idea is to offer to the Phoenix developer one of the best react redux starter kit I ever seen before.
 A large part of the content of this README file could be the same than which on the [`react-redux-starter-kit`](https://github.com/davezuko/react-redux-starter-kit) page.
 
+Actualy the project is devided in several branches : master, language-support, ecto, user_support, user-support-multilanguage
+
 ## Table of content
 
 1. Features
 2. Requirements
-3. Start
-4. Deployment
-5. Learn more
-6. Inspiraction
+3. Branches
+4. Start
+5. Deployment
+6. Learn more
+7. Inspiraction
 
 ## Features
 
@@ -30,13 +33,23 @@ A large part of the content of this README file could be the same than which on 
 - node
 - npm
 
+## Branches
+
+Like there are serveral way to start a project, I added some nice feature in sub-branches to help developpers to start faster there projects. May be in a futur I will move thoses branches in independant github project :
+
+- master : is a starter kit without Ecto support
+  - language-support : include a multilanguage support using `react-intl`
+  - ecto : include `ecto` deps with `postgrex`
+    - user_support : include a small user support. Add a `restricted area`, a user `create`, `login` and `logout`. It also add `Websocket user connection`
+      - user-support-multilanguage : merge `user_support` with `language-support`
+
 ## Start
 
 To start your Phoenix app:
 
-  * Install dependencies with `mix deps.get`
-  * Install node modules with `npm install` 
-  * Start Phoenix endpoint with `mix phoenix.server`
+* Install dependencies with `mix deps.get`
+* Install node modules with `npm install` 
+    * Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -78,11 +91,11 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 ## Learn more
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+* Official website: http://www.phoenixframework.org/
+* Guides: http://phoenixframework.org/docs/overview
+    * Docs: https://hexdocs.pm/phoenix
+    * Mailing list: http://groups.google.com/group/phoenix-talk
+    * Source: https://github.com/phoenixframework/phoenix
 
 ## Inspiraction
 - [https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit)
