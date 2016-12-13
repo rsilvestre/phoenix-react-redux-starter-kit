@@ -36,7 +36,6 @@ webpackConfig = {
       containers: __dirname + '/web/static/js/containers',
       routes: __dirname + '/web/static/js/containers',
       styles: __dirname + '/web/static/css',
-      static: __dirname + '/web/static/js/static',
       store: __dirname + '/web/static/js/store',
       components: __dirname + '/web/static/js/components',
       layouts: __dirname + '/web/static/js/layouts',
