@@ -39,11 +39,11 @@ Actualy the project is devided in several branches : master, language-support, e
 
 Like there are serveral way to start a project, I added some nice feature in sub-branches to help developpers to start faster there projects. May be in a futur I will move thoses branches in independant github project :
 
-- master : is a starter kit without Ecto support
-  - language-support : include a multilanguage support using `react-intl`
-  - ecto : include `ecto` deps with `postgrex`
-    - user_support : include a small user support. Add a `restricted area`, a user `create`, `login` and `logout`. It also add `Websocket user connection`
-      - user-support-multilanguage : merge `user_support` with `language-support`
+- [master](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/master) : is a starter kit without Ecto support
+  - [language-support](language-support) : include a multilanguage support using `react-intl`
+  - [ecto](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/ecto) : include `ecto` deps with `postgrex`
+    - [user_support](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/user_support) : include a small user support. Add a `restricted area`, a user `create`, `login` and `logout`. It also add `Websocket user connection`
+      - [user-support-multilanguage](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/user-support-multilanguage) : merge `user_support` with `language-support
 
 ## Start
 
