@@ -1,12 +1,20 @@
+sudo: false
 language: elixir
 elixir:
   - 1.3.4
 otp_release:
   - 18.1
+cache:
+  directories:
+    - node_modules
+    - deps
 addons:
   postgresql: '9.4'
 services:
   - postgresql
+install:
+  - npm install -g yarn
+  - yarn install
 before_script:
   - cp config/travis.exs config/test.exs
   - mix do ecto.create, ecto.migrate
