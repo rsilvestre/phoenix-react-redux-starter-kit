@@ -87,6 +87,10 @@ Then follow the [manual integration walkthrough](https://github.com/gaearon/redu
 ### Routing
 We use `react-router` [route definitions](https://github.com/reactjs/react-router/blob/master/docs/API.md#plainroute) (`<route>/index.js`) to define units of logic within our application. See the [application structure](#application-structure) section for more information.
 
+### DevTools
+
+The complete explaination about the [Redux DevTools](https://github.com/gaearon/redux-devtools) can be found on the github page of the project, and the usage of the extension can be fond on the [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension) page. But basicaly, from the extension's context menu choose 'Open Remote DevTools' or press Alt+Shift+arrow up (or down, left, right) (Cmd+CTRL+arrow up on Mac) for remote monitoring.
+
 ## Deployment
 
 1. build, check and push
