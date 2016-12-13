@@ -12,9 +12,10 @@ Actualy the project is devided in several branches : master, language-support, e
 2. Requirements
 3. Branches
 4. Start
-5. Deployment
-6. Learn more
-7. Inspiraction
+5. Development
+6. Deployment
+7. Learn more
+8. Inspiraction
 
 ## Features
 
@@ -28,10 +29,11 @@ Actualy the project is devided in several branches : master, language-support, e
 
 ## Requirements
 
-- elixir
-- phoenix
-- node
-- npm
+- hex `0.14.1`
+- elixir `1.3.4`
+- phoenix `1.2.1`
+- node `4.5.0`
+- yarn `^0.17.0` or npm `^3.0.0`
 
 ## Branches
 
@@ -47,13 +49,43 @@ Like there are serveral way to start a project, I added some nice feature in sub
 
 To start your Phoenix app:
 
-* Install dependencies with `mix deps.get`
-* Install node modules with `npm install` 
-    * Start Phoenix endpoint with `mix phoenix.server`
+### Install from source
+
+```bash
+git clone https://github.com/davezuko/react-redux-starter-kit.git <my-project-name>
+cd <my-project-name>
+```
+
+Then install dependencies and check to see it works. It is recommended that you use [Yarn](https://yarnpkg.com/) for deterministic installs, but `npm install` will work just as well.
+
+```bash
+mix deps.get					    # Install dependencies
+yarn install						# Install node modules
+mix do ecto.create, ecto.migrate	# If you use `Ecto`
+mix phoenix.server					# Start Phoenix endpoint
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+
+## Development
+
+#### Developer Tools
+
+**We recommend using the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).**
+Using the chrome extension allows your monitors to run on a separate thread and affords better performance and functionality. It comes with several of the most popular monitors, is easy to configure, filters actions, and doesn?t require installing any packages.
+
+However, adding the DevTools components to your project is simple. First, grab the packages from npm:
+
+```bash
+npm i --save-dev redux-devtools redux-devtools-log-monitor redux-devtools-dock-monitor
+```
+
+Then follow the [manual integration walkthrough](https://github.com/gaearon/redux-devtools/blob/master/docs/Walkthrough.md).
+
+### Routing
+We use `react-router` [route definitions](https://github.com/reactjs/react-router/blob/master/docs/API.md#plainroute) (`<route>/index.js`) to define units of logic within our application. See the [application structure](#application-structure) section for more information.
 
 ## Deployment
 
@@ -98,8 +130,16 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
     * Source: https://github.com/phoenixframework/phoenix
 
 ## Inspiraction
-- [https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit)
-- [https://github.com/bigardone/phoenix-trello](https://github.com/bigardone/phoenix-trello)
-- [https://github.com/davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
 
-Read this tutorial [https://blog.diacode.com/page-specific-javascript-in-phoenix-framework-pt-2](https://blog.diacode.com/page-specific-javascript-in-phoenix-framework-pt-2)
+I would like to thank you all the people in different opensource communities for there projects that help me to create this starter kit.
+
+- [David Zukowski](https://github.com/davezuko) and friends for the [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit) Project
+- [Ricardo García Vega](http://codeloveandboards.com) for this amasing project [Trello tribute with Phoenix and React](http://codeloveandboards.com/blog/2016/01/04/trello-tribute-with-phoenix-and-react-pt-1/) that you can also find on [github](https://github.com/bigardone/phoenix-trello)
+- [Nathan](https://github.com/terakilobyte) for [Phoenix Elixir React Redux Starter Kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit) that help me to start this project
+- [Ben Smith](https://github.com/slashdotdash) for [Phoenix + React + Redux Example](https://github.com/slashdotdash/phoenix-react-redux-example)
+
+Read those books : 
+
+- [**Programming Elixir 1.3**](https://pragprog.com/book/elixir13/programming-elixir-1-3) by _Dave Thomas_
+- [**Programming Phoenix Productive |> Reliable |> Fast**](https://pragprog.com/book/phoenix/programming-phoenix) by _Chris McCord_, _Bruce Tate_, and _José Valim_
+
