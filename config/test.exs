@@ -10,7 +10,7 @@ config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :phoenix_trello, PhoenixReactReduxStarterKit.Repo,
+config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
@@ -19,5 +19,5 @@ config :phoenix_trello, PhoenixReactReduxStarterKit.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Guardian configuration
-config :guardian, Guardian,
-  secret_key: "W9cDv9fjPtsYv2gItOcFb5PzmRzqGkrOsJGmby0KpBOlHJIlhxMKFmIlcCG9PVFQ"
+#config :guardian, Guardian,
+#  secret_key: "W9cDv9fjPtsYv2gItOcFb5PzmRzqGkrOsJGmby0KpBOlHJIlhxMKFmIlcCG9PVFQ"
