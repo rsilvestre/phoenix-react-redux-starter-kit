@@ -10,6 +10,8 @@ config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
+config :phoenix_react_redux_starter_kit, ecto_repos: [PhoenixReactReduxStarterKit.Repo]
+
 config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",

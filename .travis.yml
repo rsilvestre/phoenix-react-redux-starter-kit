@@ -27,3 +27,6 @@ before_script:
 #  - mix ecto.migrate
 script:
   - mix test --exclude integration
+env:
+  global:
+    - MIX_ENV=test
