@@ -4,10 +4,6 @@ elixir:
   - 1.3.4
 otp_release:
   - 18.1
-before_instal:
-  - sudo apt-get install -y build-essential
-  - curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-  - sudo apt-get install -y nodejs
 cache:
   directories:
     - node_modules
@@ -16,6 +12,10 @@ addons:
   postgresql: '9.4'
 services:
   - postgresql
+before_install:
+  - sudo apt-get install -y build-essential
+  - curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+  - sudo apt-get install -y nodejs
 install:
   - npm install -g yarn
   - yarn install
