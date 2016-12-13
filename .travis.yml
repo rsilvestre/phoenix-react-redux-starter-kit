@@ -24,7 +24,7 @@ install:
 before_script:
   - cp config/travis.exs config/test.exs
   - mix ecto.create
-#  - mix ecto.migrate
+  - mix ecto.migrate
 script:
   - mix test --exclude integration
 env:
