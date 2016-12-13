@@ -1,5 +1,5 @@
 sudo: false
-language: elixir
+language: elixir, node_js
 node_js:
   - "7"
 elixir:
