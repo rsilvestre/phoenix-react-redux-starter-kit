@@ -20,6 +20,7 @@ before_install:
   - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
   - sudo apt-get install -y nodejs
 install:
+  - mix deps.get
   - npm install -g yarn
   - yarn install
 before_script:
