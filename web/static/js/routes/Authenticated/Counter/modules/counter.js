@@ -9,14 +9,14 @@ export const COUNTER_DOUBLE_ASYNC = 'counter/COUNTER_DOUBLE_ASYNC'
 // ------------------------------------
 export function increment (value = 1) {
   return {
-    type    : COUNTER_INCREMENT,
-    payload : value
+    type: COUNTER_INCREMENT,
+    payload: value
   }
 }
 
 export const counterDouble = (value) => ({
-  type    : COUNTER_DOUBLE_ASYNC,
-  payload : value
+  type: COUNTER_DOUBLE_ASYNC,
+  payload: value
 })
 
 /*  This is a thunk, meaning it is a function that immediately
@@ -44,8 +44,8 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]    : (state, action) => state + action.payload,
-  [COUNTER_DOUBLE_ASYNC] : (state, action) => state * 2
+  [COUNTER_INCREMENT]: (state, action) => state + action.payload,
+  [COUNTER_DOUBLE_ASYNC]: (state, action) => state * 2
 }
 
 // ------------------------------------
