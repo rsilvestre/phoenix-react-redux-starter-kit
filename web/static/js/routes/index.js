@@ -8,10 +8,10 @@ import FunRoute from './Fun'
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
-  childRoutes : [
+  path: '/',
+  component: CoreLayout,
+  indexRoute: Home,
+  childRoutes: [
     CounterRoute(store),
     FunRoute(store)
   ]
