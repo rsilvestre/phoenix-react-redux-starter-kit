@@ -14,7 +14,7 @@ defmodule PhoenixReactReduxStarterKit.SessionController do
 
       :error ->
         conn
-        |> put_status(:unprocesable_entity)
+        |> put_status(:unprocessable_entity)
         |> render("error.json")
     end
   end
