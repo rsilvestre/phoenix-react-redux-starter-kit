@@ -1,11 +1,16 @@
 # PhoenixReactReduxStarterKit
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![master | Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
-[![language-support | Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=language-support)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
-[![ecto | Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=ecto)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
-[![user_support | Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user_support)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
-[![user-support-multilanguage | Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user-support-multilanguage)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
+
+master | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
+
+language-support | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=language-support)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
+
+ecto | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=ecto)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
+
+user_support | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user_support)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
+
+user-support-multilanguage | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user-support-multilanguage)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit)
 
 The project is based on [`react-redux-starter-kit`](https://github.com/davezuko/react-redux-starter-kit) developed by [`David Zukowski`](https://github.com/davezuko).
 The main idea is to offer to the Phoenix developer one of the best react redux starter kit I ever seen before.
