@@ -20,6 +20,10 @@ defmodule PhoenixReactReduxStarterKit.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
+      alias PhoenixReactReduxStarterKit.Repo
+      import Ecto.Model
+      import Ecto.Query, only: [from: 2]
+
 
       # The default endpoint for testing
       @endpoint PhoenixReactReduxStarterKit.Endpoint
@@ -27,6 +31,11 @@ defmodule PhoenixReactReduxStarterKit.ChannelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixReactReduxStarterKit.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(PhoenixReactReduxStarterKit.Repo, {:shared, self()})
+    end
 
     :ok
   end
