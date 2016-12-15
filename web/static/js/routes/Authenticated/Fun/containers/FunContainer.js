@@ -13,7 +13,7 @@ import Fun from '../components/Fun'
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  updateField : (value) => updateField(value)
+  updateField: (value) => updateField(value)
 }
 
 const mapStateToProps = ({ fun }) => ({
