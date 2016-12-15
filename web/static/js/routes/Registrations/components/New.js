@@ -4,7 +4,7 @@ import { setDocumentTitle, renderErrorsFor } from '../../../utils'
 
 export class New extends React.Component {
   static propTypes = {
-    errors: React.PropTypes.object,
+    errors: React.PropTypes.array,
     signUp: React.PropTypes.func.isRequired
   }
 

@@ -37,7 +37,10 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <a href='#' onClick={this._handleSignOutClick}><i className='fa fa-sign-out' /> Sign out</a>
+        <a href='#' className='signout-user' onClick={this._handleSignOutClick}>
+          <i className='fa fa-sign-out' />
+          Sign out
+        </a>
       </li>
     )
   }
