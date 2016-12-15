@@ -37,6 +37,6 @@ defmodule PhoenixReactReduxStarterKit.SignInTest do
     user_sign_in(%{user: user})
 
     assert page_source =~ "#{user.first_name} #{user.last_name}"
-    assert page_source =~ "Welcome!"
+    assert page_source =~ "Welcome to the Phoenix React Redux Starter Kit"
   end
 end
