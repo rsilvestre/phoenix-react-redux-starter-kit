@@ -34,9 +34,9 @@ export const setCurrentUser = (dispatch, user) => {
   }
 }
 
-export const sessionError = ({ errors }) => ({
+export const sessionError = (error) => ({
   type: SESSION_ERROR,
-  payload: errors
+  payload: error
 })
 
 export const userSignOut = () => ({
@@ -118,7 +118,7 @@ const ACTION_HANDLERS = {
     error: null
   }),
   [USER_SIGNED_OUT]: (state) => initialState,
-  [SESSION_ERROR]: (state, { payload: { error } }) => ({ ...state, error })
+  [SESSION_ERROR]: (state, { payload: { error } }) => ({ ...state, error: error })
 }
 
 const initialState = {

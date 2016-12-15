@@ -9,7 +9,7 @@ export class New extends React.Component {
     error: React.PropTypes.string
   }
 
-  static componentDidMount () {
+  componentDidMount () {
     setDocumentTitle('Sign in')
   }
 
@@ -39,7 +39,7 @@ export class New extends React.Component {
   render () {
     return (
       <div className='view-container sessions new'>
-        <form onSubmit={this._handleSubmit} className='form-horizontal'>
+        <form id='sign_in_form' onSubmit={this._handleSubmit} className='form-horizontal'>
           {::this._renderError()}
           <div className='form-group'>
             <label htmlFor='email' className='col-sm-4 control-label'>Email</label>

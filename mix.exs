@@ -27,7 +27,8 @@ defmodule PhoenixReactReduxStarterKit.Mixfile do
        :gettext,
        :ecto,
        :postgrex,
-       :comeonin
+       :comeonin,
+       :ex_machina
      ]]
   end
 
@@ -48,7 +49,12 @@ defmodule PhoenixReactReduxStarterKit.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
-     {:guardian, "~> 0.13.0"}]
+     {:guardian, "~> 0.13.0"},
+     {:credo, "~> 0.2", only: [:dev, :test]},
+     {:ex_machina, "~> 0.6.1"},
+     {:exactor, "~> 2.2.0"},
+     {:hound, "~> 0.8"},
+     {:mix_test_watch, "~> 0.2", only: :dev}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
@@ -59,6 +65,7 @@ defmodule PhoenixReactReduxStarterKit.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

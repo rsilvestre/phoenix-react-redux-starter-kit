@@ -20,7 +20,13 @@ defmodule PhoenixReactReduxStarterKit.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      alias PhoenixReactReduxStarterKit.Repo
+      import Ecto.Model, except: [build: 2]
+      import Ecto.Query, only: [from: 2]
+
       import PhoenixReactReduxStarterKit.Router.Helpers
+
+      import PhoenixReactReduxStarterKit.Factory
 
       # The default endpoint for testing
       @endpoint PhoenixReactReduxStarterKit.Endpoint
@@ -28,6 +34,11 @@ defmodule PhoenixReactReduxStarterKit.ConnCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixReactReduxStarterKit.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(PhoenixReactReduxStarterKit.Repo, {:shared, self()})
+    end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

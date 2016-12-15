@@ -8,7 +8,7 @@ export class New extends React.Component {
     signUp: React.PropTypes.func.isRequired
   }
 
-  static componentDidMount () {
+  componentDidMount () {
     setDocumentTitle('Sign up')
   }
 
@@ -33,7 +33,7 @@ export class New extends React.Component {
 
     return (
       <div className='view-container registrations new'>
-        <form onSubmit={this._handleSubmit} className='form-horizontal'>
+        <form id='sign_up_form' onSubmit={this._handleSubmit} className='form-horizontal'>
           <div className='form-group'>
             <label htmlFor='firstname' className='col-sm-4 control-label'>First Name</label>
             <div className='col-sm-5'>
