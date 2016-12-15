@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router'
-import { Provider } from 'react-intl-redux'
-import * as messages from '../i18n/'
+import { Provider } from 'react-redux'
 
 class AppContainer extends Component {
   static propTypes = {

@@ -13,11 +13,11 @@ import Fun from '../components/Fun'
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  updateField : (value) => updateField(value)
+  updateField: (value) => updateField(value)
 }
 
 const mapStateToProps = (state) => ({
-  fun : state.fun
+  fun: state.fun
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
