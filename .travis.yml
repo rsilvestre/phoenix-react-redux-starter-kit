@@ -17,6 +17,7 @@ services:
   - postgresql
 before_install:
   - mix local.hex --force
+  - mkdir -p node_modules/node-sass/vendor
 install:
   - mix deps.get
   - npm install -g yarn
