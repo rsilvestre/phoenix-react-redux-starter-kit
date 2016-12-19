@@ -9,7 +9,9 @@
   "scripts": {
     "lint": "eslint web/static/js",
     "lint:fix": "npm run lint -- --fix",
-    "test": "better-npm-run test"
+    "test": "better-npm-run test",
+    "test:dev": "npm run test -- --watch",
+    "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "betterScripts": {
     "test": {
@@ -20,9 +22,12 @@
       }
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsilvestre/phoenix-react-redux-starter-kit.git"
+  },
   "author": "Michaël Silvestre",
-  "license": "ISC",
-  "private": true,
+  "license": "MIT",
   "engines": {
     "node": "7.1.x",
     "npm": "3.10.x"

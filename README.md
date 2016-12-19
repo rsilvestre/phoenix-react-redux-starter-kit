@@ -25,9 +25,10 @@ Actualy the project is devided in several branches : master, language-support, e
 3. Branches
 4. Start
 5. Development
-6. Deployment
-7. Learn more
-8. Inspiraction
+6. Test
+7. Deployment
+8. Learn more
+9. Inspiraction
 
 ## Features
 
@@ -41,10 +42,11 @@ Actualy the project is devided in several branches : master, language-support, e
 
 ## Requirements
 
+- erlang `18.x`
 - hex `0.14.1`
 - elixir `1.3.4`
 - phoenix `1.2.1`
-- node `4.5.0`
+- node `6.x.x`
 - yarn `^0.17.0` or npm `^3.0.0`
 
 ## Branches
@@ -64,17 +66,17 @@ To start your Phoenix app:
 ### Install from source
 
 ```bash
-git clone https://github.com/davezuko/react-redux-starter-kit.git <my-project-name>
+$ git clone git@github.com:rsilvestre/phoenix-react-redux-starter-kit.git <my-project-name>
 cd <my-project-name>
 ```
 
 Then install dependencies and check to see it works. It is recommended that you use [Yarn](https://yarnpkg.com/) for deterministic installs, but `npm install` will work just as well.
 
 ```bash
-mix deps.get					    # Install dependencies
-yarn install						# Install node modules
-mix do ecto.create, ecto.migrate	# If you use `Ecto`
-mix phoenix.server					# Start Phoenix endpoint
+$ mix deps.get                      # Install dependencies
+$ yarn install                      # Install node modules
+$ mix do ecto.create, ecto.migrate  # If you use `Ecto`
+$ mix phoenix.server                # Start Phoenix endpoint
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
@@ -91,7 +93,7 @@ Using the chrome extension allows your monitors to run on a separate thread and 
 However, adding the DevTools components to your project is simple. First, grab the packages from npm:
 
 ```bash
-npm i --save-dev redux-devtools redux-devtools-log-monitor redux-devtools-dock-monitor
+$ npm i --save-dev redux-devtools redux-devtools-log-monitor redux-devtools-dock-monitor
 ```
 
 Then follow the [manual integration walkthrough](https://github.com/gaearon/redux-devtools/blob/master/docs/Walkthrough.md).
@@ -103,11 +105,43 @@ We use `react-router` [route definitions](https://github.com/reactjs/react-route
 
 The complete explaination about the [Redux DevTools](https://github.com/gaearon/redux-devtools) can be found on the github page of the project, and the usage of the extension can be fond on the [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension) page. But basicaly, from the extension's context menu choose 'Open Remote DevTools' or press Alt+Shift+arrow up (or down, left, right) (Cmd+CTRL+arrow up on Mac) for remote monitoring.
 
+## Test
+
+The Elixir code is _linted_ with [**credo**](http://credo-ci.org) where the source code can be found on [github](https://github.com/rrrene/credo)
+
+```bash
+$ mix credo --strict
+```
+
+The Elixir code is unitTested (orchestration) with [**ExUnit**](https://hexdocs.pm/ex_unit/ExUnit.html) and the Integration tests is made with [**Hound**](https://hexdocs.pm/hound/readme.html)
+
+```bash
+$ mix test                          # integration tests included
+```
+
+```bash
+$ mix test --exclude integration    # integration tests excluded
+```
+
+The JavaScript code is _linted_ with [**eslint**](http://eslint.org)
+
+```bash
+$ npm run lint
+```
+
+The JavaScript is unitTested (orchestred) with [**Karma**](https://karma-runner.github.io/1.0/index.html), [**Mocha**](https://mochajs.org), [**sinon**](http://sinonjs.org) and [**chai**](http://chaijs.com)
+
+```bash
+$ npm run test
+```
+
+
+
 ## Deployment
 
 1. build, check and push
 
-   ```shell
+   ```bash
    docker login dockerhub.net -u root -p PASSWORD
    export TAG=$(git rev-parse --short HEAD)
    docker build -t dockerhub.net/phoenix-react-redux-starter-kit:${TAG} .
@@ -125,7 +159,7 @@ The complete explaination about the [Redux DevTools](https://github.com/gaearon/
 
 2. pull, run and clean
 
-   ```shell
+   ```bash
    docker login dockerhub.net -u root -p PASSWORD
    export TAG=TAG
    docker pull dockerhub.net/phoenix-react-redux-starter-kit:${TAG}

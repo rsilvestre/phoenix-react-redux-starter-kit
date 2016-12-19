@@ -25,4 +25,9 @@ before_script:
   - cp config/travis.exs config/test.exs
 #  - mix do ecto.create, ecto.migrate
 script:
+  - mix credo --strict
   - mix test --exclude integration
+  - npm run test
+env:
+  global:
+    - NODE_ENV=test
