@@ -8,8 +8,8 @@ node_js:
 otp_release:
   - '18.1'
 cache:
+  yarn: true
   directories:
-    - node_modules
     - deps
 addons:
   postgresql: '9.4'
@@ -18,16 +18,20 @@ services:
 before_install:
   - mix local.hex --force
   - mix local.rebar --force
+  - mkdir -p node_modules/node-sass/vendor
 install:
   - mix deps.get
   - npm install -g yarn
-  - yarn install
+  - yarn
 before_script:
   - cp config/travis.exs config/test.exs
   - mix ecto.create
   - mix ecto.migrate
 script:
+  - mix credo --strict
   - mix test --exclude integration
+  - npm run test
 env:
   global:
     - MIX_ENV=test
+    - NODE_ENV=test
