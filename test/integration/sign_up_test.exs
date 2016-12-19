@@ -60,6 +60,7 @@ defmodule PhoenixReactReduxStarterKit.SignUpTest do
     assert page_source =~ "Password does not match"
   end
 
+  @tag :integration
   test "Sign up with too short password" do
     sign_up_form = fill_user_information
 
@@ -80,6 +81,7 @@ defmodule PhoenixReactReduxStarterKit.SignUpTest do
     assert page_source =~ "should be at least 5 character(s)"
   end
 
+  @tag :integration
   test "Sign up with too short password and confirmation not match" do
     sign_up_form = fill_user_information
 
