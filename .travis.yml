@@ -8,8 +8,8 @@ node_js:
 otp_release:
   - '18.1'
 cache:
+  yarn: true
   directories:
-    - node_modules
     - deps
 addons:
   postgresql: '9.4'
@@ -21,7 +21,7 @@ before_install:
 install:
   - mix deps.get
   - npm install -g yarn
-  - yarn install
+  - yarn
 before_script:
   - cp config/travis.exs config/test.exs
 #  - mix do ecto.create, ecto.migrate
