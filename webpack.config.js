@@ -1,20 +1,25 @@
+const argv = require('yargs').argv
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./config')
+const cssnano = require('cssnano')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const __DEV__ = config.globals.__DEV__
 const __PROD__ = config.globals.__PROD__
 const __TEST__ = config.globals.__TEST__
 
-webpackConfig = {
+const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+
+const webpackConfig = {
   name    : 'client',
   target  : 'web',
   devtool: 'source-map',
   entry: {
     'app': [
       __dirname + '/web/static/css/app.scss',
-      __dirname + '/web/static/js/app.js'
+      config.utils_paths.client('app.js')
     ],
     'vendor': config.compiler_vendors
   },
@@ -30,43 +35,55 @@ webpackConfig = {
     'react/addons': true
   },
   resolve: {
-    moduleDirectories: [__dirname + '/web/static/js', 'node_modules'],
-    alias: {
-      phoenix: __dirname + '/deps/phoenix/web/static/js/phoenix.js',
-      containers: __dirname + '/web/static/js/containers',
-      routes: __dirname + '/web/static/js/containers',
-      styles: __dirname + '/web/static/css',
-      store: __dirname + '/web/static/js/store',
-      components: __dirname + '/web/static/js/components',
-      layouts: __dirname + '/web/static/js/layouts',
-      views: __dirname + '/web/static/js/views',
-      actions: __dirname + '/web/static/js/redux/modules'
-    },
-    root: __dirname + '/web/static/js',
-    extensions : ['', '.js', '.jsx', '.json', '.sass']
+    root: config.utils_paths.client(),
+    extensions : ['', '.js', '.jsx']
   },
+  sassLoader: {
+    includePaths : config.utils_paths.client('styles')
+  },
+  postcss: [
+    cssnano({
+      autoprefixer : {
+        add      : true,
+        remove   : true,
+        browsers : ['last 2 versions']
+      },
+      discardComments : {
+        removeAll : true
+      },
+      discardUnused : false,
+      mergeIdents   : false,
+      reduceIdents  : false,
+      safe          : true,
+      sourcemap     : true
+    })
+  ],
   module: {
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       loader: 'babel',
-      query: {
-        cacheDirectory : true,
-        plugins        : ['transform-runtime', "transform-decorators-legacy"],
-        presets        : ['es2015', 'react', 'stage-2', 'stage-0']
-      }
+      query: config.compiler_babel
     }, {
       test   : /\.json$/,
       loader : 'json'
     }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css')
-    }, {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract(
+      test    : /\.css$/,
+      exclude : null,
+      loaders : [
         'style',
-        'css!sass?includePaths[]=' + __dirname + '/web/static/css'
-      )
+        BASE_CSS_LOADER,
+        'postcss'
+      ]
+    }, {
+      test    : /\.scss$/,
+      exclude : null,
+      loaders : [
+        'style',
+        BASE_CSS_LOADER,
+        'postcss',
+        'sass?sourceMap'
+      ]
     }, {
       test: /\.sass$/,
       loader: ExtractTextPlugin.extract(
@@ -83,16 +100,38 @@ webpackConfig = {
       { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
     ]
   },
-  plugins: [
+  plugins:[
     new webpack.DefinePlugin(config.globals),
+  ]
+}
+
+if (__TEST__) {
+  webpackConfig.plugins.push(
+    new HtmlWebpackPlugin({
+      template : config.utils_paths.client('index.html'),
+      hash     : false,
+      favicon  : config.utils_paths.public('favicon.ico'),
+      filename : 'index.html',
+      inject   : 'body',
+      minify   : {
+        collapseWhitespace : true
+      }
+    })
+  )
+} else {
+  webpackConfig.plugins.push(
     new ExtractTextPlugin('css/app.css'),
     new CopyWebpackPlugin([
-      { from: './web/static/assets'},
-      { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
+      { from: './web/static/assets' },
+      {
+        from: './deps/phoenix_html/web/static/js/phoenix_html.js',
         to: 'js/phoenix_html.js'
       }
-    ])
-  ]
+    ]),
+    new webpack.optimize.CommonsChunkPlugin({
+      names : ['vendor']
+    })
+  )
 }
 
 // Ensure that the compiler exits on errors during testing so that
@@ -100,16 +139,12 @@ webpackConfig = {
 if (__TEST__ && !argv.watch) {
   webpackConfig.plugins.push(function () {
     this.plugin('done', function (stats) {
-      const errors = []
       if (stats.compilation.errors.length) {
-        // Log each of the warnings
-        stats.compilation.errors.forEach(function (error) {
-          errors.push(error.message || error)
-        })
-
         // Pretend no assets were generated. This prevents the tests
         // from running making it clear that there were warnings.
-        throw new Error(errors)
+        throw new Error(
+          stats.compilation.errors.map(err => err.message || err)
+        )
       }
     })
   })
@@ -132,15 +167,6 @@ if (__DEV__) {
         dead_code : true,
         warnings  : false
       }
-    })
-  )
-}
-
-// Don't split bundles during testing, since we only want import one bundle
-if (!__TEST__) {
-  webpackConfig.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      names : ['vendor']
     })
   )
 }
