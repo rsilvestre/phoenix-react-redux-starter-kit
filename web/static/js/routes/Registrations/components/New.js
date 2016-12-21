@@ -3,8 +3,22 @@ import autobind from 'autobind-decorator'
 import { setDocumentTitle, renderErrorsFor } from '../../../utils'
 
 export class New extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      data: {
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      }
+    }
+  }
+
   static propTypes = {
-    errors: React.PropTypes.object,
+    errors: React.PropTypes.array,
     signUp: React.PropTypes.func.isRequired
   }
 
@@ -17,36 +31,36 @@ export class New extends React.Component {
     e.preventDefault()
     const { signUp } = this.props
 
-    const data = {
-      first_name: this.refs.firstName.value,
-      last_name: this.refs.lastName.value,
-      email: this.refs.email.value,
-      password: this.refs.password.value,
-      password_confirmation: this.refs.passwordConfirmation.value
-    }
+    signUp(this.state.data)
+  }
 
-    signUp(data)
+  @autobind
+  _handleTyping (e) {
+    this.setState({ data: { ...this.state.data, [e.target.id]: e.target.value } })
   }
 
   render () {
     const { errors } = this.props
+    const { data } = this.state
 
     return (
       <div className='view-container registrations new'>
         <form id='sign_up_form' onSubmit={this._handleSubmit} className='form-horizontal'>
           <div className='form-group'>
-            <label htmlFor='firstname' className='col-sm-4 control-label'>First Name</label>
+            <label htmlFor='first_name' className='col-sm-4 control-label'>First Name</label>
             <div className='col-sm-5'>
-              <input id='firstname' ref='firstName' type='text'
-                className='form-control' placeholder='First name' required='required' />
+              <input id='first_name' ref='first_name' type='text'
+                className='form-control' placeholder='First name' required='required'
+                onChange={this._handleTyping} value={data.first_name} />
               {renderErrorsFor(errors, 'first_name')}
             </div>
           </div>
           <div className='form-group'>
-            <label htmlFor='lastname' className='col-sm-4 control-label'>Last Name</label>
+            <label htmlFor='last_name' className='col-sm-4 control-label'>Last Name</label>
             <div className='col-sm-5'>
-              <input id='lastname' ref='lastName' type='text'
-                className='form-control' placeholder='Last name' required='required' />
+              <input id='last_name' ref='last_name' type='text'
+                className='form-control' placeholder='Last name' required='required'
+                onChange={this._handleTyping} value={data.last_name} />
               {renderErrorsFor(errors, 'last_name')}
             </div>
           </div>
@@ -54,7 +68,8 @@ export class New extends React.Component {
             <label htmlFor='email' className='col-sm-4 control-label'>Email</label>
             <div className='col-sm-5'>
               <input id='email' ref='email' type='email'
-                className='form-control' placeholder='Email' required='required' />
+                className='form-control' placeholder='Email' required='required'
+                onChange={this._handleTyping} value={data.email} />
               {renderErrorsFor(errors, 'email')}
             </div>
           </div>
@@ -62,15 +77,17 @@ export class New extends React.Component {
             <label htmlFor='password' className='col-sm-4 control-label'>Password</label>
             <div className='col-sm-5'>
               <input id='password' ref='password' type='password'
-                className='form-control' placeholder='Password' required='required' />
+                className='form-control' placeholder='Password' required='required'
+                onChange={this._handleTyping} value={data.password} />
               {renderErrorsFor(errors, 'password')}
             </div>
           </div>
           <div className='form-group'>
-            <label htmlFor='passwordConfirmation' className='col-sm-4 control-label'>Password Confirmation</label>
+            <label htmlFor='password_confirmation' className='col-sm-4 control-label'>Password Confirmation</label>
             <div className='col-sm-5'>
-              <input id='passwordConfirmation' ref='passwordConfirmation'
-                type='password' className='form-control' placeholder='Confirm password' required='required' />
+              <input id='password_confirmation' ref='password_confirmation'
+                type='password' className='form-control' placeholder='Confirm password' required='required'
+                onChange={this._handleTyping} value={data.password_confirmation} />
               {renderErrorsFor(errors, 'password_confirmation')}
             </div>
           </div>

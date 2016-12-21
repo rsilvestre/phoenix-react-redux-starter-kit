@@ -1,10 +1,11 @@
 defmodule PhoenixReactReduxStarterKit.CurrentUserController do
   use PhoenixReactReduxStarterKit.Web, :controller
+  alias Guardian.Plug
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: PhoenixReactReduxStarterKit.SessionController
+  plug Plug.EnsureAuthenticated, handler: PhoenixReactReduxStarterKit.SessionController
 
   def show(conn, _) do
-    user = Guardian.Plug.current_resource(conn)
+    user = Plug.current_resource(conn)
 
     conn
     |> put_status(:ok)

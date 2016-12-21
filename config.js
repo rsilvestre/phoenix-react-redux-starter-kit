@@ -14,9 +14,10 @@ const config = {
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base  : path.resolve(__dirname, '..'),
-  dir_client : 'src',
+  path_base  : path.resolve(__dirname, '.'),
+  dir_client : 'web/static/js',
   dir_dist   : 'dist',
+  dir_public : 'priv/static',
   dir_server : 'server',
   dir_test   : 'tests',
 
@@ -31,8 +32,8 @@ const config = {
   // ----------------------------------
   compiler_babel : {
     cacheDirectory : true,
-    plugins        : ['transform-runtime'],
-    presets        : ['es2015', 'react', 'stage-0']
+    plugins        : ['transform-runtime', 'transform-decorators-legacy'],
+    presets        : ['es2015', 'react', 'stage-2', 'stage-0']
   },
   compiler_devtool         : 'source-map',
   compiler_hash_type       : 'hash',
@@ -112,7 +113,9 @@ function base () {
 config.utils_paths = {
   base   : base,
   client : base.bind(null, config.dir_client),
-  dist   : base.bind(null, config.dir_dist)
+  public : base.bind(null, config.dir_public),
+  dist   : base.bind(null, config.dir_dist),
+  test   : base.bind(null, config.dir_test)
 }
 
 // ========================================================

@@ -1,0 +1,21 @@
+defmodule PhoenixReactReduxStarterKit.HomePageTest do
+  use PhoenixReactReduxStarterKit.IntegrationCase
+
+  @tag :integration
+  test "should display the home page properly" do
+    user = create_user
+
+    user_sign_in(%{user: user})
+
+    navigate_to "/"
+
+    assert page_title == "Hello PhoenixReactReduxStarterKit!"
+
+    assert page_source =~ "Phoenix React Redux Starter Kit"
+    assert page_source =~ "Welcome!"
+
+    assert element_displayed?({:class, "duck"})
+
+    assert css_property({:class, "footer"}, "Phoenix React Redux Starter Kit. On Github by @rsilvestre")
+  end
+end

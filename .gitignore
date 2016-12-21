@@ -22,4 +22,6 @@ erl_crash.dump
 *.log
 priv/static/**
 
+coverage
+
 *.lock

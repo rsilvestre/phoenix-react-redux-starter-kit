@@ -8,7 +8,7 @@ const initialState = {
   errors: null
 }
 
-export const registrationError = (errors) => ({
+export const registrationError = (errors = []) => ({
   type: REGISTRATION_ERROR,
   payload: errors
 })
@@ -23,11 +23,8 @@ export const signUp = (data) => {
       dispatch(push('/'))
     })
     .catch((error) => {
-      if (error && error instanceof Error) {
-        return // console.log(error)
-      }
       error.response.json()
-      .then(({ errors }) => {
+      .then((errors) => {
         dispatch(registrationError(errors))
       })
     })
@@ -39,9 +36,9 @@ export const actions = {
 }
 
 const ACTION_HANDLERS = {
-  [REGISTRATION_ERROR]: (state = initialState, { errors }) => ({
+  [REGISTRATION_ERROR]: (state = initialState, { payload }) => ({
     ...state,
-    errors
+    errors: payload
   })
 }
 
