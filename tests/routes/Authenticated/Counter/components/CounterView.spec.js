@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { Counter } from 'routes/Counter/components/Counter'
+import { Counter } from 'routes/Authenticated/Counter/components/Counter'
 import { shallow } from 'enzyme'
 
 describe('(Component) Counter', () => {
