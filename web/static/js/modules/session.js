@@ -2,9 +2,9 @@ import { push } from 'react-router-redux'
 import { Socket } from 'phoenix'
 import { httpGet, httpPost, httpDelete } from '../utils'
 
-export const SESSION_ERROR = 'sessions/SESSION_ERROR'
-export const CURRENT_USER = 'sessions/CURRENT_USER'
-export const USER_SIGNED_OUT = 'sessions/USER_SIGNED_OUT'
+export const SESSION_ERROR = 'session/SESSION_ERROR'
+export const CURRENT_USER = 'session/CURRENT_USER'
+export const USER_SIGNED_OUT = 'session/USER_SIGNED_OUT'
 
 export const currentUser = (user, socket, channel) => ({
   type: CURRENT_USER,
@@ -34,7 +34,7 @@ export const setCurrentUser = (dispatch, user) => {
   }
 }
 
-export const sessionError = (error) => ({
+export const sessionError = (error = '') => ({
   type: SESSION_ERROR,
   payload: error
 })

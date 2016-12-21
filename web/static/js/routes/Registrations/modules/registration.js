@@ -8,7 +8,7 @@ const initialState = {
   errors: null
 }
 
-export const registrationError = (errors) => ({
+export const registrationError = (errors = []) => ({
   type: REGISTRATION_ERROR,
   payload: errors
 })
