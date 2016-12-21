@@ -1,6 +1,6 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
-import AuthenticatedContainer from './authenticated'
+import AuthenticatedContainer from './Authenticated'
 import Registrations from './Registrations'
 import Sessions from './Sessions'
 
