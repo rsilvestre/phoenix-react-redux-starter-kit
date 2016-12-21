@@ -36,7 +36,7 @@ defmodule PhoenixReactReduxStarterKit.SignUpTest do
     assert element_displayed?({:class, "current-user"})
 
     assert page_source =~ "John Doe"
-    assert page_source =~ "Welcome!"
+    assert page_source =~ "Welcome to the Phoenix React Redux Starter Kit"
   end
 
   @tag :integration

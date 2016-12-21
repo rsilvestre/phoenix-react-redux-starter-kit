@@ -12,7 +12,7 @@ defmodule PhoenixReactReduxStarterKit.HomePageTest do
     assert page_title == "Hello PhoenixReactReduxStarterKit!"
 
     assert page_source =~ "Phoenix React Redux Starter Kit"
-    assert page_source =~ "Welcome!"
+    assert page_source =~ "Welcome to the Phoenix React Redux Starter Kit"
 
     assert element_displayed?({:class, "duck"})
 
