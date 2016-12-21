@@ -1,5 +1,13 @@
 defmodule PhoenixReactReduxStarterKit.User do
+  @moduledoc """
+    Describe a user entity
+    - The schema block where we have all the metadata regarding table fields.
+    - The changeset function, where we can define all validations and transformations applied to the data before being
+    ready to use it in our application.
+  """
+
   use PhoenixReactReduxStarterKit.Web, :model
+  alias Comeonin.Bcrypt
 
   @derive {Poison.Encoder, only: [:id, :first_name, :last_name, :email]}
 
@@ -35,7 +43,7 @@ defmodule PhoenixReactReduxStarterKit.User do
   defp generate_encrypted_password(current_changeset) do
     case current_changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(current_changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(password))
+        put_change(current_changeset, :encrypted_password, Bcrypt.hashpwsalt(password))
       _ ->
         current_changeset
     end

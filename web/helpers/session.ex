@@ -1,5 +1,6 @@
 defmodule PhoenixReactReduxStarterKit.Session do
   alias PhoenixReactReduxStarterKit.{Repo, User}
+  alias Comeonin.Bcrypt
 
   @moduledoc false
 
@@ -14,8 +15,8 @@ defmodule PhoenixReactReduxStarterKit.Session do
 
   defp check_password(user, password) do
     case user do
-      nil -> Comeonin.Bcrypt.dummy_checkpw()
-      _ -> Comeonin.Bcrypt.checkpw(password, user.encrypted_password)
+      nil -> Bcrypt.dummy_checkpw()
+      _ -> Bcrypt.checkpw(password, user.encrypted_password)
     end
   end
 end
