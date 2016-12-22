@@ -150,18 +150,13 @@ $ npm install -g yarn
 
 Like there are serveral way to start a project, I added some nice feature in sub-branches to help developpers to start faster there projects. May be in a futur I will move thoses branches in independant github project :
 
-
-
 ```
-. master 			# is a starter kit without Ecto support
+. master             # is a starter kit without Ecto support
 ├── language-support # include a multilanguage support using react-intl
-└── ecto			# include ecto deps with postgrex
+└── ecto             # include ecto deps with postgrex
     └── user_support # include a user restricted area, a signup, a signin and a signout actions
         └── user-support-multilanguage # merge user_support with language-support
-
 ```
-
-
 
 ### master
 
@@ -260,8 +255,6 @@ The JavaScript is unitTested (orchestred) with [**Karma**](https://karma-runner.
 ```bash
 $ npm run test
 ```
-
-
 
 ## Deployment
 
