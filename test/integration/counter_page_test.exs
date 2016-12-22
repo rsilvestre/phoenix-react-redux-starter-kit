@@ -13,9 +13,9 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
 
     assert page_source =~ "Phoenix React Redux Starter Kit"
 
-    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/h2")) == "Counter: 0"
-    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/button[1]")) ==  "Increment"
-    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/button[2]")) == "Double (Async)"
+    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/h2")) == "Counter: 0"
+    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[1]")) ==  "Increment"
+    assert inner_text(find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[2]")) == "Double (Async)"
 
     assert css_property({:class, "footer"}, "Phoenix React Redux Starter Kit. On Github by @rsilvestre")
   end
@@ -28,9 +28,9 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
 
     navigate_to "/counter"
 
-    incrementElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/button[1]")
-    doubleElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/button[2]")
-    counterElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/h2")
+    incrementElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[1]")
+    doubleElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[2]")
+    counterElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/h2")
 
     assert inner_text(counterElement) == "Counter: 0"
     click(incrementElement)
