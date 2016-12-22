@@ -11,7 +11,7 @@ describe('(Route) Registration', () => {
     expect(typeof _route).to.equal('object')
   })
 
-  it('Configuration should contain path `registration`', () => {
-    expect(_route.path).to.equal('/sign_up')
+  it('Configuration should contain path `sign_up`', () => {
+    expect(_route.path).to.equal('sign_up')
   })
 })

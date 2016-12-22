@@ -78,6 +78,7 @@ describe('(Internal Module) Session', () => {
   describe('(Action Creator) signupPage', () => {
     let _globalState
     let _dispatchSpy
+    let _getStateSpy
 
     beforeEach(() => {
       _globalState = {
@@ -88,6 +89,9 @@ describe('(Internal Module) Session', () => {
           ..._globalState,
           session : sessionReducer(_globalState.session, action)
         }
+      })
+      _getStateSpy = sinon.spy(() => {
+        return _globalState
       })
     })
 
@@ -100,13 +104,14 @@ describe('(Internal Module) Session', () => {
     })
 
     it('Should return a promise from that thunk that gets fulfilled.', () => {
-      return Promise.resolve(signupPage()(_dispatchSpy)).should.eventually.be.fulfilled
+      return Promise.resolve(signupPage()(_dispatchSpy, _getStateSpy)).should.eventually.be.fulfilled
     })
 
     it('Should call dispatch and getState exactly once.', () => {
-      return Promise.resolve(signupPage()(_dispatchSpy))
+      return Promise.resolve(signupPage()(_dispatchSpy, _getStateSpy))
         .then(() => {
           _dispatchSpy.should.have.been.calledOnce
+          _getStateSpy.should.have.been.calledOnce
         })
     })
   })

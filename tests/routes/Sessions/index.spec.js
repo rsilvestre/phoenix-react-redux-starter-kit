@@ -12,6 +12,6 @@ describe('(Route) Sessions', () => {
   })
 
   it('Configuration should contain path `sign_in`', () => {
-    expect(_route.path).to.equal('/sign_in')
+    expect(_route.path).to.equal('sign_in')
   })
 })
