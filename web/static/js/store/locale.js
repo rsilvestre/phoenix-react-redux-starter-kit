@@ -2,7 +2,13 @@ import { updateIntl } from 'react-intl-redux'
 import * as messages from '../i18n/'
 
 // ------------------------------------
-// Constants
+// Constants application
+// ------------------------------------
+export const SUPPORTED_LANGUAGE = '(en|fr|es)'
+export const LANGUAGE_STORAGE_NAME = 'phoenix-react-redux:language'
+
+// ------------------------------------
+// Constants reducer
 // ------------------------------------
 export const LOCALE_CHANGE = 'LOCALE_CHANGE'
 
@@ -17,6 +23,7 @@ export const localeChangeAction = (value = 'en') => ({
 
 export const localeChange = (value = 'en') => {
   return (dispatch) => {
+    localStorage.setItem(LANGUAGE_STORAGE_NAME, value)
     dispatch(localeChangeAction(value))
     dispatch(updateIntl({
       locale: value,
@@ -39,7 +46,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 'en'
+const initialState = localStorage.getItem(LANGUAGE_STORAGE_NAME) || 'en'
 export default function localeReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

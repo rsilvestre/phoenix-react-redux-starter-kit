@@ -15,6 +15,7 @@ import es from 'react-intl/locale-data/es'
 import fr from 'react-intl/locale-data/fr'
 
 import * as messages from './i18n/'
+import { LANGUAGE_STORAGE_NAME } from './store/locale'
 
 addLocaleData(en)
 addLocaleData(de)
@@ -22,10 +23,11 @@ addLocaleData(it)
 addLocaleData(es)
 addLocaleData(fr)
 
+const languageDefault = localStorage.getItem(LANGUAGE_STORAGE_NAME) || 'en'
 const initialLanguage = {
   intl: {
-    locale: 'en',
-    messages: messages['en']
+    locale: languageDefault,
+    messages: messages[languageDefault]
   }
 }
 

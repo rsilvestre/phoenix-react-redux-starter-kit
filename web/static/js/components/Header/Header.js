@@ -1,21 +1,21 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import LangLink from '../../containers/LangLink'
 import './Header.scss'
 
 export const Header = () => (
   <div>
     <h1>Phoenix React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='route--active'>
+    <LangLink to='/home' activeClassName='route--active'>
       Home
-    </IndexLink>
+    </LangLink>
     {' · '}
-    <Link to='/counter' activeClassName='route--active'>
+    <LangLink to='/counter' activeClassName='route--active'>
       Counter
-    </Link>
+    </LangLink>
     {' · '}
-    <Link to='/fun' activeClassName='route--active'>
+    <LangLink to='/fun' activeClassName='route--active'>
       Fun
-    </Link>
+    </LangLink>
   </div>
 )
 
