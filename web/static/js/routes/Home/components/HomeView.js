@@ -7,7 +7,7 @@ const messages = defineMessages({
   welcome: {
     id: 'home.welcome',
     description: 'Welcome to the homepage',
-    defaultMessage: 'Welcome to the React Redux Starter Kit'
+    defaultMessage: 'Welcome to the Phoenix React Redux Starter Kit'
   }
 })
 
