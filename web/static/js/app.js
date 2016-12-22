@@ -59,7 +59,7 @@ const start = () => {
       const renderError = (error) => {
         const RedBox = require('redbox-react').default
 
-        ReactDOM.render(<RedBox error={error}/>, MOUNT_NODE)
+        ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
       }
 
       // Wrap render in try/catch
@@ -86,7 +86,6 @@ const start = () => {
   // ========================================================
   render()
 }
-
 
 // All modern browsers, expect `Safari`, have implemented
 // the `ECMAScript Internationalization API`.
