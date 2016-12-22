@@ -6,15 +6,14 @@ export class LangLink extends React.Component {
     locale: React.PropTypes.string.isRequired,
     to: React.PropTypes.string.isRequired,
     children: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element
+      React.PropTypes.node
     ]).isRequired
   }
 
   render () {
     const { to, locale, children, ...rest } = this.props
     return (
-      <Link {...rest} to={`/${locale}${to}`}>
+      <Link {...rest} to={`/${locale}/${to}`.replace(/\/\//, '/')}>
         {children}
       </Link>
     )

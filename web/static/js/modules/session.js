@@ -44,19 +44,20 @@ export const userSignOut = () => ({
 })
 
 export const signIn = ({ email, password }) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const data = {
       session: {
         email: email,
         password: password
       }
     }
+    const { locale } = getState()
 
     httpPost('/api/v1/sessions', data)
     .then(({ user, jwt }) => {
       localStorage.setItem('phoenixAuthToken', jwt)
       setCurrentUser(dispatch, user)
-      dispatch(push('/'))
+      dispatch(push(`/${locale}/home`.replace('//', '/')))
     })
     .catch((error) => {
       error.response.json()
@@ -68,26 +69,28 @@ export const signIn = ({ email, password }) => {
 }
 
 export const getCurrentUser = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     httpGet('/api/v1/current_user')
     .then((data) => {
       setCurrentUser(dispatch, data)
     })
     .catch((error) => {
       console.log(error)
-      dispatch(push('/sign_in'))
+      const { locale } = getState()
+      dispatch(push(`/${locale}/sign_in`.replace('//', '/')))
     })
   }
 }
 
 export const signOut = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     httpDelete('/api/v1/sessions')
     .then(() => {
+      const { locale } = getState()
       localStorage.removeItem('phoenixAuthToken')
 
       dispatch(userSignOut())
-      dispatch(push('/sign_in'))
+      dispatch(push(`/${locale}/sign_in`.replace('//', '/')))
     })
     .catch((error) => {
       console.log(error)
@@ -96,8 +99,9 @@ export const signOut = () => {
 }
 
 export const signupPage = () => {
-  return (dispatch) => {
-    dispatch(push('/sign_up'))
+  return (dispatch, getState) => {
+    const { locale } = getState()
+    dispatch(push(`/${locale}/sign_up`.replace('//', '/')))
   }
 }
 

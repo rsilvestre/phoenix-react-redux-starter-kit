@@ -1,5 +1,4 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import autobind from 'autobind-decorator'
 import ReactGravatar from 'react-gravatar'
 import LangLink from '../../containers/LangLink'
@@ -22,7 +21,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <LangLink className='current-user'>
+        <LangLink to='#' className='current-user'>
           <ReactGravatar className='react-gravatar' email={currentUser.email} protocol='https://' size={18} />
           {' '}
           {fullName}

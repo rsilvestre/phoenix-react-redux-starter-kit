@@ -14,13 +14,14 @@ export const registrationError = (errors = []) => ({
 })
 
 export const signUp = (data) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     httpPost('/api/v1/registrations', { user: data })
     .then(({ user, jwt }) => {
+      const { locale } = getState()
       localStorage.setItem('phoenixAuthToken', jwt)
 
       setCurrentUser(dispatch, user)
-      dispatch(push('/'))
+      dispatch(push(`/${locale}/home`.replace('//', '/')))
     })
     .catch((error) => {
       error.response.json()

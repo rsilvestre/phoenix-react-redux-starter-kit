@@ -9,26 +9,31 @@ import FunRoute from './Fun'
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => {
-  const _ensureAuthenticated = (nextState, replace, callback) => {
+  const _ensureAuthenticated = (_nextState, replace, callback) => {
     const { dispatch } = store
-    const { session: { currentUser } } = store.getState()
+    const { session: { currentUser }, locale } = store.getState()
     const phoenixAuthToken = localStorage.getItem('phoenixAuthToken')
 
     if (!currentUser && phoenixAuthToken) {
       dispatch(getCurrentUser())
     } else if (!phoenixAuthToken) {
-      replace('/sign_in')
+      replace(`/${locale}/sign_in`.replace('//', '/'))
     }
 
     callback()
   }
 
   return {
-    path: '/',
     component: AuthContainer,
     onEnter: _ensureAuthenticated,
-    indexRoute: Home,
+    indexRoute: {
+      onEnter: (_nextState, replace) => {
+        const { locale } = store.getState()
+        replace(`/${locale}/home`.replace('//', '/'))
+      }
+    },
     childRoutes: [
+      { path: 'home', ...Home },
       CounterRoute(store),
       FunRoute(store)
     ]
