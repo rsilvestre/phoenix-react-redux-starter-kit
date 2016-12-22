@@ -3,9 +3,35 @@ import CoreLayout from '../layouts/CoreLayout'
 import AuthenticatedContainer from './Authenticated'
 import Registrations from './Registrations'
 import Sessions from './Sessions'
+import LanguageContainer from '../containers/LanguageContainer'
+import Home from './Home'
+import CounterRoute from './Counter'
+import FunRoute from './Fun'
+import Error404 from './Error404'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
+
+const smartRoutes = (store) => {
+  const updateLanguage = ({ location: { pathname, search }, params }) => {
+    if (!(params || {}).lang) {
+      const { locale } = store.getState()
+
+      window.history.replaceState({}, '', `/${locale}/${pathname}${search}`.replace('//', '/'))
+    }
+  }
+
+  return {
+    indexRoute: { onEnter: (_nextState, replace) => replace('/home') },
+    onEnter: (nextState) => updateLanguage(nextState),
+    onChange: (_prevState, nextState) => updateLanguage(nextState),
+    childRoutes: [
+      { path: 'home', ...Home },
+      CounterRoute(store),
+      FunRoute(store)
+    ]
+  }
+}
 
 export const createRoutes = (store) => ({
   component   : CoreLayout,
@@ -13,6 +39,19 @@ export const createRoutes = (store) => ({
     Registrations(store),
     Sessions(store),
     AuthenticatedContainer(store)
+  path: '/',
+  component: CoreLayout,
+  childRoutes: [
+    smartRoutes(store),
+    {
+      path: ':lang',
+      component: LanguageContainer,
+      childRoutes : [
+        smartRoutes(store),
+        { path: '*', ...Error404 }
+      ]
+    },
+    { path: '*', ...Error404 }
   ]
 })
 

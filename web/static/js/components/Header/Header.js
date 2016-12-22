@@ -2,6 +2,7 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import autobind from 'autobind-decorator'
 import ReactGravatar from 'react-gravatar'
+import LangLink from '../../containers/LangLink'
 import './Header.scss'
 
 export class Header extends React.Component {
@@ -21,11 +22,11 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <Link className='current-user'>
+        <LangLink className='current-user'>
           <ReactGravatar className='react-gravatar' email={currentUser.email} protocol='https://' size={18} />
           {' '}
           {fullName}
-        </Link>
+        </LangLink>
       </li>
     )
   }
@@ -52,7 +53,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <Link to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in' /> Sign in</Link>
+        <LangLink to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in' /> Sign in</LangLink>
       </li>
     )
   }
@@ -64,7 +65,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <Link to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up' /> Sign up</Link>
+        <LangLink to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up' /> Sign up</LangLink>
       </li>
     )
   }
@@ -84,24 +85,24 @@ export class Header extends React.Component {
         <nav className='navbar navbar-custom navbar-fixed-top'>
           <div className='container'>
             <div className='navbar-header'>
-              <IndexLink className='navbar-brand' to='/'>Brand</IndexLink>
+              <LangLink className='navbar-brand' to='/home'>Brand</LangLink>
             </div>
             <div className='collapse navbar-collapse'>
               <ul className='nav navbar-nav'>
                 <li>
-                  <IndexLink to='/' activeClassName='route--active'>
+                  <LangLink to='/home' activeClassName='route--active'>
                     Home
-                  </IndexLink>
+                  </LangLink>
                 </li>
                 <li>
-                  <Link to='/counter' activeClassName='route--active'>
+                  <LangLink to='/counter' activeClassName='route--active'>
                     Counter
-                  </Link>
+                  </LangLink>
                 </li>
                 <li>
-                  <Link to='/fun' activeClassName='route--active'>
+                  <LangLink to='/fun' activeClassName='route--active'>
                     Fun
-                  </Link>
+                  </LangLink>
                 </li>
               </ul>
               <ul className='nav navbar-nav navbar-right'>

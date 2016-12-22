@@ -2,6 +2,8 @@ import React from 'react'
 import { defineMessages, injectIntl, intlShape } from 'react-intl'
 import autobind from 'autobind-decorator'
 
+import { SUPPORTED_LANGUAGE } from '../../store/locale'
+
 const messages = defineMessages({
   spanish: {
     id: 'languageSelector.spanish',
@@ -21,9 +23,23 @@ const messages = defineMessages({
 })
 
 export class LanguageSelector extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
+  constructor (props, context) {
+    super(props, context)
+
+    this.context = context
+  }
+
   @autobind
-  _handleChange (e) {
-    this.props.onChange(e.target.value)
+  _handleChange ({ target : { value } }) {
+    const { pathname, search } = window.location
+    // const url = `/${value}${pathname.replace(/^\/(en|fr|es)\//, '/')}${search}`
+    const url = `/${value}${pathname.replace(new RegExp(`^/${SUPPORTED_LANGUAGE}/`), '/')}${search}`
+    this.context.router.push(url)
+    this.props.onChange(value)
   }
 
   render () {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Header } from 'components/Header/Header'
-import { IndexLink, Link } from 'react-router'
 import { signOut } from 'modules/session'
 import { shallow } from 'enzyme'
+import LangLink from 'containers/LangLink'
 
 describe('(Component) Header', () => {
   let _wrapper
@@ -19,19 +19,27 @@ describe('(Component) Header', () => {
 
   describe('Navigation links...', () => {
     it('Should render a Link to Home route', () => {
-      expect(_wrapper.contains(
-        <IndexLink activeClassName='route--active' to='/'>
+      expect(_wrapper).to.contain(
+        <LangLink activeClassName='route--active' to='/home'>
           Home
-        </IndexLink>
-      )).to.be.true
+        </LangLink>
+      )
     })
 
     it('Should render a Link to Counter route', () => {
-      expect(_wrapper.contains(
-        <Link activeClassName='route--active' to='/counter'>
+      expect(_wrapper).to.contain(
+        <LangLink activeClassName='route--active' to='/counter'>
           Counter
-        </Link>
-      )).to.be.true
+        </LangLink>
+      )
+    })
+
+    it('Should render a Link to Fun route', () => {
+      expect(_wrapper).to.contain(
+        <LangLink activeClassName='route--active' to='/fun'>
+          Fun
+        </LangLink>
+      )
     })
   })
 })
