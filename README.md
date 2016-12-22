@@ -18,6 +18,8 @@ A large part of the content of this README file could be the same than which on 
 
 Actualy the project is devided in several branches : master, language-support, ecto, user_support, user-support-multilanguage
 
+If you want learn more about `elixir` and `phoenix`, i would suggest you to watch the webbinar made by `José Valim`, the creator of `elixir` : [https://youtu.be/Af-gTdlQoUM?t=1093](https://youtu.be/Af-gTdlQoUM?t=1093)
+
 ## Table of content
 
 1. Features
@@ -49,15 +51,139 @@ Actualy the project is devided in several branches : master, language-support, e
 - node `6.x.x`
 - yarn `^0.17.0` or npm `^3.0.0`
 
+### Install requirements
+
+#### Elixir
+
+follow the install instruction on the elixir-lang web page [http://elixir-lang.org/install.html#mac-os-x](http://elixir-lang.org/install.html#mac-os-x)
+
+For OSX, you have to install erlang 18.x
+
+```bash
+$ brew install erlang-r18
+$ brew install elixir
+```
+
+if you have several version of erlang installed, switch to version 18.x
+
+to know which version of erlang is installed with brew, use : `$ brew info erlang`
+
+
+```bash
+$ brew switch erlang 18.x
+```
+
+#### Phoenix
+
+Follow the instruction on the installation guide of phoenix framework [http://www.phoenixframework
+.org/docs/installation](http://www.phoenixframework.org/docs/installation)
+
+```bash
+$ mix local.hex
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+```
+
+#### Node
+
+node come with `npm` installed
+
+##### NVM
+
+NVM mean _(node virtual machine)_. You can find it here : [https://github.com/creationix/nvm](https://github.com/creationix/nvm)
+
+with cURL:
+
+```bash
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+```
+
+or with wget
+
+```bash
+$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+```
+
+add this in your `.profile` of `.bash_profile` or `.bashrc`, ...
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+reload your profile with `$ source ~/.profile`
+
+install node :
+
+```bash
+$ nvm install node
+```
+
+##### Brew
+
+you can use [homebrew](http://brew.sh)
+
+```bash
+$ brew install node
+```
+
+##### Others
+
+[https://nodejs.org/en/download/current/](https://nodejs.org/en/download/current/)
+
+[https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
+
+#### Yarn
+
+`Yarn` is a **FAST, RELIABLE, AND SECURE DEPENDENCY MANAGEMENT.**
+
+`Yarn` caches every package it downloads so it never needs to download it again. It also parallelizes operations to maximize resource utilization so install times are faster than ever.
+
+It's x times faster than using `npm`
+
+Once `npm` is installed
+
+```bash
+$ npm install -g yarn
+```
+
 ## Branches
 
 Like there are serveral way to start a project, I added some nice feature in sub-branches to help developpers to start faster there projects. May be in a futur I will move thoses branches in independant github project :
 
-- [master](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/master) : is a starter kit without Ecto support
-  - [language-support](language-support) : include a multilanguage support using `react-intl`
-  - [ecto](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/ecto) : include `ecto` deps with `postgrex`
-    - [user_support](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/user_support) : include a small user support. Add a `restricted area`, a user `create`, `login` and `logout`. It also add `Websocket user connection`
-      - [user-support-multilanguage](https://github.com/rsilvestre/phoenix-react-redux-starter-kit/tree/user-support-multilanguage) : merge `user_support` with `language-support
+
+
+```
+. master 			# is a starter kit without Ecto support
+├── language-support # include a multilanguage support using react-intl
+└── ecto			# include ecto deps with postgrex
+    └── user_support # include a user restricted area, a signup, a signin and a signout actions
+        └── user-support-multilanguage # merge user_support with language-support
+
+```
+
+
+
+### master
+
+The branch master contains the simpliest starter kit possible. The backend just render a static page including the canvas of the SPA. It handles the request to the css, the javascript, the favicon, etc...
+
+### ecto
+
+This branch contains the simple support to `ecto`. `Ecto` is the `elixir ORM` you can find more details, you can find information here : [https://hexdocs.pm/ecto/Ecto.html](https://hexdocs.pm/ecto/Ecto.html)
+
+### language-support
+
+I'm living in Beligum. We have three communities speaking different languages. Dutch, French and German. For that reason, language support looks important to me. [`juanda99`](https://github.com/juanda99) created first a language support for [`react redux starter kit`](https://github.com/davezuko/react-redux-starter-kit) and I helped him to maintain his repository. I reused what he did and included it in this project
+
+### user_support
+
+A lot of project start with a user connection. This branch includes a small user support.
+
+It adds a restricted area, a user create, login and logout. It also add Websocket user connection. 
+
+### user-support-multilanguage
+
+This branch is a mix between `user_support` and `language-support`. You should be able to start a project really fast.
 
 ## Start
 
@@ -185,6 +311,7 @@ I would like to thank you all the people in different opensource communities for
 
 - [David Zukowski](https://github.com/davezuko) and friends for the [React Redux Starter Kit](https://github.com/davezuko/react-redux-starter-kit) Project
 - [Ricardo García Vega](http://codeloveandboards.com) for this amasing project [Trello tribute with Phoenix and React](http://codeloveandboards.com/blog/2016/01/04/trello-tribute-with-phoenix-and-react-pt-1/) that you can also find on [github](https://github.com/bigardone/phoenix-trello)
+- [Juanda99](https://github.com/juanda99) for the multi languages support
 - [Nathan](https://github.com/terakilobyte) for [Phoenix Elixir React Redux Starter Kit](https://github.com/terakilobyte/phoenix-elixir-react-redux-starter-kit) that help me to start this project
 - [Ben Smith](https://github.com/slashdotdash) for [Phoenix + React + Redux Example](https://github.com/slashdotdash/phoenix-react-redux-example)
 
