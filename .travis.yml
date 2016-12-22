@@ -1,3 +1,11 @@
+branches:
+  only:
+    - master
+    - language-support
+    - ecto
+    - user_support
+    - user-support-multilanguage
+
 sudo: false
 dist: trusty
 language: elixir
@@ -7,14 +15,18 @@ node_js:
   - '6'
 otp_release:
   - '18.1'
+
 cache:
   yarn: true
   directories:
     - deps
+
 addons:
   postgresql: '9.4'
+
 services:
   - postgresql
+
 before_install:
   - mix local.hex --force
   - mkdir -p node_modules/node-sass/vendor
@@ -22,6 +34,7 @@ install:
   - mix deps.get
   - npm install -g yarn
   - yarn
+
 before_script:
   - cp config/travis.exs config/test.exs
 #  - mix do ecto.create, ecto.migrate
@@ -29,6 +42,7 @@ script:
   - mix credo --strict
   - mix test --exclude integration
   - npm run test
+
 env:
   global:
     - NODE_ENV=test
