@@ -16,7 +16,7 @@ The project is based on [`react-redux-starter-kit`](https://github.com/davezuko/
 The main idea is to offer to the Phoenix developer one of the best react redux starter kit I ever seen before.
 A large part of the content of this README file could be the same than which on the [`react-redux-starter-kit`](https://github.com/davezuko/react-redux-starter-kit) page.
 
-Actualy the project is devided in several branches : master, language-support, ecto, user_support, user-support-multilanguage
+What are my motivates and what is the difference with the other starter kit. I wanted to follow a specialized react redux starter kit with the fractal approche. - The application structure presented in this boilerplate is **fractal**, where functionality is grouped primarily by feature rather than file type. - [(Read more here)](https://github.com/davezuko/react-redux-starter-kit#application-structure). I also wanted to have several starter kit, according what you wanted to develop. The project is devided in several branches : _master_, _language-support_, _ecto_, _user_support_ and _user-support-multilanguage_.
 
 If you want learn more about `elixir` and `phoenix`, i would suggest you to watch the webbinar made by `José Valim`, the creator of `elixir` : [https://youtu.be/Af-gTdlQoUM?t=1093](https://youtu.be/Af-gTdlQoUM?t=1093)
 
