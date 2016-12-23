@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-export class LangLink extends React.Component {
+export class LinkComponent extends React.Component {
   static propTypes = {
     locale: React.PropTypes.string.isRequired,
     to: React.PropTypes.string.isRequired,
@@ -20,4 +20,4 @@ export class LangLink extends React.Component {
   }
 }
 
-export default LangLink
+export default LinkComponent

@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from 'components/Header/Header'
 import { signOut } from 'modules/session'
 import { shallow } from 'enzyme'
-import LangLink from 'containers/LangLink'
+import Link from 'containers/Link'
 
 describe('(Component) Header', () => {
   let _wrapper
@@ -20,25 +20,25 @@ describe('(Component) Header', () => {
   describe('Navigation links...', () => {
     it('Should render a Link to Home route', () => {
       expect(_wrapper).to.contain(
-        <LangLink activeClassName='route--active' to='/home'>
+        <Link activeClassName='route--active' to='/home'>
           Home
-        </LangLink>
+        </Link>
       )
     })
 
     it('Should render a Link to Counter route', () => {
       expect(_wrapper).to.contain(
-        <LangLink activeClassName='route--active' to='/counter'>
+        <Link activeClassName='route--active' to='/counter'>
           Counter
-        </LangLink>
+        </Link>
       )
     })
 
     it('Should render a Link to Fun route', () => {
       expect(_wrapper).to.contain(
-        <LangLink activeClassName='route--active' to='/fun'>
+        <Link activeClassName='route--active' to='/fun'>
           Fun
-        </LangLink>
+        </Link>
       )
     })
   })

@@ -1,7 +1,7 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import ReactGravatar from 'react-gravatar'
-import LangLink from '../../containers/LangLink'
+import Link from '../../containers/Link'
 import './Header.scss'
 
 export class Header extends React.Component {
@@ -21,11 +21,11 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <LangLink to='#' className='current-user'>
+        <Link to='#' className='current-user'>
           <ReactGravatar className='react-gravatar' email={currentUser.email} protocol='https://' size={18} />
           {' '}
           {fullName}
-        </LangLink>
+        </Link>
       </li>
     )
   }
@@ -37,7 +37,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <a href='#' className='signout-user' onClick={this._handleSignOutClick}>
+        <a href='/sign_in' className='signout-user' onClick={this._handleSignOutClick}>
           <i className='fa fa-sign-out' />
           Sign out
         </a>
@@ -52,7 +52,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <LangLink to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in' /> Sign in</LangLink>
+        <Link to='/sign_in' activeClassName='route--active'><i className='fa fa-sign-in' /> Sign in</Link>
       </li>
     )
   }
@@ -64,7 +64,7 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <LangLink to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up' /> Sign up</LangLink>
+        <Link to='/sign_up' activeClassName='route--active'><i className='fa fa-sign-up' /> Sign up</Link>
       </li>
     )
   }
@@ -84,24 +84,24 @@ export class Header extends React.Component {
         <nav className='navbar navbar-custom navbar-fixed-top'>
           <div className='container'>
             <div className='navbar-header'>
-              <LangLink className='navbar-brand' to='/home'>Brand</LangLink>
+              <Link className='navbar-brand' to='/home'>Brand</Link>
             </div>
             <div className='collapse navbar-collapse'>
               <ul className='nav navbar-nav'>
                 <li>
-                  <LangLink to='/home' activeClassName='route--active'>
+                  <Link to='/home' activeClassName='route--active'>
                     Home
-                  </LangLink>
+                  </Link>
                 </li>
                 <li>
-                  <LangLink to='/counter' activeClassName='route--active'>
+                  <Link to='/counter' activeClassName='route--active'>
                     Counter
-                  </LangLink>
+                  </Link>
                 </li>
                 <li>
-                  <LangLink to='/fun' activeClassName='route--active'>
+                  <Link to='/fun' activeClassName='route--active'>
                     Fun
-                  </LangLink>
+                  </Link>
                 </li>
               </ul>
               <ul className='nav navbar-nav navbar-right'>
