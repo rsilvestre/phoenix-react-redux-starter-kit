@@ -1,6 +1,6 @@
 import React from 'react'
 import { HomeView } from 'routes/Authenticated/Home/components/HomeView'
-import { mountWithIntl } from '../../../../intl-enzime-test-helper'
+import { mountWithIntl } from '../../../../intl-enzyme-test-helper'
 
 describe('(View) Home', () => {
   let _component
