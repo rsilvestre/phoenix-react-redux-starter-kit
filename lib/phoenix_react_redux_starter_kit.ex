@@ -21,6 +21,7 @@ defmodule PhoenixReactReduxStarterKit do
       worker(PhoenixReactReduxStarterKit.Repo, []),
       # Start your own worker by calling: PhoenixReactReduxStarterKit.Worker.start_link(arg1, arg2, arg3)
       # worker(PhoenixReactReduxStarterKit.Worker, [arg1, arg2, arg3]),
+      supervisor(PhoenixReactReduxStarterKit.CounterChannel.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
