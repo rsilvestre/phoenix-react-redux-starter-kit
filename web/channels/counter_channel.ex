@@ -5,12 +5,26 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
 
   use PhoenixReactReduxStarterKit.Web, :channel
 
-  def join("counter:lobby", payload, socket) do
-    if authorized?(payload) do
+  alias PhoenixReactReduxStarterKit.CounterChannel.Monitor
+
+  def join("counter:" <> user_id, _payload, socket) do
+    if authorized?(socket, user_id) do
+      current_user = socket.assigns.current_user
+
+      Monitor.create(current_user.id)
+
+      send(self, {:after_join, Monitor.get_counter(current_user.id)})
+
       {:ok, socket}
     else
-      {:error, %{reason: "unauthorized"}}
+      {:error, %{reason: "unauthorized, user_id: #{user_id}, socket_user_id: #{socket.assigns.current_user.id}"}}
     end
+  end
+
+  def handle_info({:after_join, counter}, socket) do
+    push socket, "counter_state", %{counter: counter}
+
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion
@@ -20,7 +34,20 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
   end
 
   def handle_in("counter:updated", %{"value" => value}, socket) do
-    broadcast! socket, "counter:updated", %{"value": value}
+    cond do
+      is_integer(value) ->
+        broadcast! socket, "counter:updated", %{"value": value}
+        Monitor.set_counter(socket.assigns.current_user.id, value)
+        {:noreply, socket}
+      true ->
+        {:reply, {:error, %{error: "bad value type"}}, socket}
+    end
+  end
+
+  def handle_in("counter:reset", %{}, socket) do
+    broadcast! socket, "counter:updated", %{"value": 0}
+    Monitor.reset_counter(socket.assigns.current_user.id)
+
     {:noreply, socket}
   end
 
@@ -32,7 +59,7 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
   end
 
   # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    true
+  defp authorized?(socket, user_id) do
+    Integer.to_string(socket.assigns.current_user.id) == user_id
   end
 end

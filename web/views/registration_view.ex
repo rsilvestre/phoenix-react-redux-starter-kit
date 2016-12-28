@@ -2,7 +2,7 @@ defmodule PhoenixReactReduxStarterKit.RegistrationView do
   use PhoenixReactReduxStarterKit.Web, :view
 
   def render("error.json", %{changeset: changeset}) do
-    errors = Enum.map(changeset.errors, fn {field, detail} ->
+    _errors = Enum.map(changeset.errors, fn {field, detail} ->
       %{} |> Map.put(field, render_detail(detail))
     end)
   end
