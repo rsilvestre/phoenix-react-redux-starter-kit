@@ -5,8 +5,8 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
 
   setup do
     {:ok, _, socket} =
-      socket("user_id", %{some: :assign})
-      |> subscribe_and_join(CounterChannel, "counter:lobby")
+      socket("user_id", %{current_user: %{id: 1}})
+      |> subscribe_and_join(CounterChannel, "counter:1")
 
     {:ok, socket: socket}
   end
@@ -16,7 +16,7 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
     assert_reply ref, :ok, %{"hello" => "there"}
   end
 
-  test "shout broadcasts to counter:lobby", %{socket: socket} do
+  test "shout broadcasts to counter:1", %{socket: socket} do
     push socket, "shout", %{"hello" => "all"}
     assert_broadcast "shout", %{"hello" => "all"}
   end
@@ -24,5 +24,20 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
   test "broadcasts are pushed to the client", %{socket: socket} do
     broadcast_from! socket, "broadcast", %{"some" => "data"}
     assert_push "broadcast", %{"some" => "data"}
+  end
+
+  test "counter:updated should broadcast to the clients", %{socket: socket} do
+    push socket, "counter:updated", %{"value": 3}
+    assert_broadcast "counter:updated", %{"value": 3}
+  end
+
+  test "counter:updated should not broadcast to the clients when receive other type than integer", %{socket: socket} do
+    ref = push socket, "counter:updated", %{"value": "3"}
+    assert_reply ref, :error
+  end
+
+  test "counter:reset should broadcat 0 to the clients", %{socket: socket} do
+    push socket, "counter:reset", %{}
+    assert_broadcast "counter:updated", %{"value": 0}
   end
 end

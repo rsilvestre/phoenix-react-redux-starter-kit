@@ -34,8 +34,8 @@ describe('(Component) Counter', () => {
     expect(_wrapper.find('h2').text()).to.match(/8$/)
   })
 
-  it('Should render exactly two buttons.', () => {
-    expect(_wrapper.find('button')).to.have.length(2)
+  it('Should render exactly three buttons.', () => {
+    expect(_wrapper.find('button')).to.have.length(3)
   })
 
   describe('An increment button...', () => {
