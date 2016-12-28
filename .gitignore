@@ -24,4 +24,3 @@ priv/static/**
 
 coverage
 
-*.lock
