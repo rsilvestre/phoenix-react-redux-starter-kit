@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync, connectToChannel, leaveChannel } from '../modules/counter'
+import { increment, doubleAsync, resetCounter, connectToChannel, leaveChannel } from '../modules/counter'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -15,6 +15,7 @@ import Counter from '../components/Counter'
 const mapDispatchToProps = {
   increment: () => increment(1),
   doubleAsync,
+  resetCounter,
   connectToChannel,
   leaveChannel
 }

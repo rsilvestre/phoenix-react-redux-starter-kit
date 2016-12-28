@@ -18,7 +18,7 @@ export class Counter extends React.Component {
   }
 
   render () {
-    const { counter, increment, doubleAsync } = this.props
+    const { counter, increment, doubleAsync, resetCounter } = this.props
     return (
       <div style={{ margin: '0 auto' }}>
         <h2>Counter: {counter}</h2>
@@ -29,6 +29,10 @@ export class Counter extends React.Component {
         <button className='btn btn-default' onClick={doubleAsync}>
           Double (Async)
         </button>
+        {' '}
+        <button className='btn btn-default' onClick={resetCounter}>
+          Reset
+        </button>
       </div>
     )
   }
@@ -37,6 +41,7 @@ export class Counter extends React.Component {
 Counter.propTypes = {
   counter: React.PropTypes.number.isRequired,
   doubleAsync: React.PropTypes.func.isRequired,
+  resetCounter: React.PropTypes.func.isRequired,
   increment: React.PropTypes.func.isRequired,
   socket: React.PropTypes.object,
   connectToChannel: React.PropTypes.func.isRequired,

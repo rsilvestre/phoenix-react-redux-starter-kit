@@ -9,6 +9,7 @@ export const COUNTER_UPDATED_VALUE = 'counter/COUNTER_UPDATED_VALUE'
 export const COUNTER_ERROR = 'counter/COUNTER_ERROR'
 export const COUNTER_INCREMENT = 'counter/COUNTER_INCREMENT'
 export const COUNTER_DOUBLE_ASYNC = 'counter/COUNTER_DOUBLE_ASYNC'
+export const RESET_COUNTER = 'counter/RESET_COUNTER'
 
 // Init
 const initialState = {
@@ -42,22 +43,32 @@ export const updateCounter = (value) => ({
   payload: value
 })
 
+export const reset = () => ({
+  type: RESET_COUNTER
+})
+
 export const connectToChannel = (socket) => {
   return (dispatch, getState) => {
-    const { counter: { channel: chan } } = getState()
+    const { counter: { channel: chan }, session } = getState()
     if (!socket || chan) {
       return false
     }
 
-    const channel = socket.channel('counter:lobby')
+    const channel = socket.channel('counter:' + session.currentUser.id)
     dispatch(channelConnection())
 
     channel.join().receive('ok', (response) => {
       dispatch(setCounter(response.counter))
       dispatch(setChannel(channel))
+    }).receive('error', (error) => {
+      console.log(error)
     })
 
     channel.on('counter:updated', ({ value }) => {
+      dispatch(updateCounter(value))
+    })
+
+    channel.on('counter_state', ({ counter: value = 0 }) => {
       dispatch(updateCounter(value))
     })
   }
@@ -117,11 +128,23 @@ export const doubleAsync = () => {
   }
 }
 
+export const resetCounter = () => {
+  return (dispatch, getState) => {
+    const { counter: { channel } } = getState()
+    dispatch(reset())
+    channel.push('counter:reset', {})
+      .receive('error', (data) => {
+        dispatch(counterError(data.error))
+      })
+  }
+}
+
 export const actions = {
   connectToChannel,
   leaveChannel,
   increment,
-  doubleAsync
+  doubleAsync,
+  resetCounter
 }
 
 // ------------------------------------
@@ -132,6 +155,7 @@ const ACTION_HANDLERS = {
   [COUNTER_UPDATED_VALUE]: (state, { payload }) => ({ ...state, counter: payload }),
   [COUNTER_INCREMENT]: (state, { payload }) => ({ ...state, counter: state.counter + payload }),
   [COUNTER_DOUBLE_ASYNC]: (state, { payload }) => ({ ...state, counter: payload * 2 }),
+  [RESET_COUNTER]: (state) => ({ ...state, counter: 0 }),
   [LEAVE_CHANNEL]: (state) => ({ ...state, channel: null })
 }
 
