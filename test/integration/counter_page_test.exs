@@ -1,10 +1,19 @@
 defmodule PhoenixReactReduxStarterKit.CounterPageTest do
   use PhoenixReactReduxStarterKit.IntegrationCase
 
-  @tag :integration
-  test "Should render the page properly" do
+  alias PhoenixReactReduxStarterKit.CounterChannel.Monitor
+
+  setup do
     user = create_user
 
+    Monitor.create(user.id)
+    Monitor.reset_counter(user.id)
+
+    {:ok, %{user: user}}
+  end
+
+  @tag :integration
+  test "Should render the page properly", %{user: user} do
     user_sign_in(%{user: user})
 
     navigate_to "/counter"
@@ -22,9 +31,7 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
   end
 
   @tag :integration
-  test "Should increment the counter correctly" do
-    user = create_user
-
+  test "Should increment the counter correctly", %{user: user} do
     user_sign_in(%{user: user})
 
     navigate_to "/counter"

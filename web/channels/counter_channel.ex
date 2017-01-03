@@ -34,13 +34,12 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
   end
 
   def handle_in("counter:updated", %{"value" => value}, socket) do
-    cond do
-      is_integer(value) ->
-        broadcast! socket, "counter:updated", %{"value": value}
-        Monitor.set_counter(socket.assigns.current_user.id, value)
-        {:noreply, socket}
-      true ->
-        {:reply, {:error, %{error: "bad value type"}}, socket}
+    if is_integer(value) do
+      broadcast! socket, "counter:updated", %{"value": value}
+      Monitor.set_counter(socket.assigns.current_user.id, value)
+      {:noreply, socket}
+    else
+      {:reply, {:error, %{error: "bad value type"}}, socket}
     end
   end
 
