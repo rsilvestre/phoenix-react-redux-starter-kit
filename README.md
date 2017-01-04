@@ -11,6 +11,7 @@ Build status by branch :
 | ecto                       | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=ecto)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit) |
 | user_support               | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user_support)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit) |
 | user-support-multilanguage | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=user-support-multilanguage)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit) |
+| demo                       | [![Build Status](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit.svg?branch=demo)](https://travis-ci.org/rsilvestre/phoenix-react-redux-starter-kit) |
 
 The project is based on [`react-redux-starter-kit`](https://github.com/davezuko/react-redux-starter-kit) developed by [`David Zukowski`](https://github.com/davezuko).
 The main idea is to offer to the Phoenix developer one of the best react redux starter kit I ever seen before.
@@ -19,6 +20,10 @@ A large part of the content of this README file could be the same than which on 
 What are my motivates and what is the difference with the other starter kit. I wanted to follow a specialized react redux starter kit with the fractal approche. - The application structure presented in this boilerplate is **fractal**, where functionality is grouped primarily by feature rather than file type. - [(Read more here)](https://github.com/davezuko/react-redux-starter-kit#application-structure). I also wanted to have several starter kit, according what you wanted to develop. The project is devided in several branches : _master_, _language-support_, _ecto_, _user_support_ and _user-support-multilanguage_.
 
 If you want learn more about `elixir` and `phoenix`, i would suggest you to watch the webbinar made by `José Valim`, the creator of `elixir` : [https://youtu.be/Af-gTdlQoUM?t=1093](https://youtu.be/Af-gTdlQoUM?t=1093)
+
+The demo website is accessible to this link : [https://phoenix-react-redux-starterkit.herokuapp.com](https://phoenix-react-redux-starterkit.herokuapp.com)
+
+
 
 ## Table of content
 
@@ -29,8 +34,9 @@ If you want learn more about `elixir` and `phoenix`, i would suggest you to watc
 5. Development
 6. Test
 7. Deployment
-8. Learn more
-9. Inspiraction
+8. Demo
+9. Learn more
+10. Inspiraction
 
 ## Features
 
@@ -157,6 +163,7 @@ Like there are serveral way to start a project, I added some nice feature in sub
 └── ecto             # include ecto deps with postgrex
     └── user_support # include a user restricted area, a signup, a signin and a signout actions
         └── user-support-multilanguage # merge user_support with language-support
+            └── demo # The demo of the starter kit
 ```
 
 ### master
@@ -290,6 +297,14 @@ $ npm run test
    docker rm $(docker ps -a | grep Exited | awk '{print $1}')
    docker rmi $(docker images | grep -v "IMAGE ID" | grep -v ${TAG} | awk '{print $3}')
    ```
+
+## Demo
+
+[https://phoenix-react-redux-starterkit.herokuapp.com](https://phoenix-react-redux-starterkit.herokuapp.com)
+
+It support multi-language, user connection and websocket communication.
+
+If you try it, when you open 2 browser and you are connecte on each browser with the same user, when you are on the counter page, if you increment the counter, this one is incremented on the page of each browsers. This is also a GenServer to memorise the counter state. The state of the counter is shared between each instance of the server.
 
 ## Learn more
 
