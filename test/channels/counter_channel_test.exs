@@ -31,6 +31,17 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
     assert_broadcast "counter:updated", %{"value": 3}
   end
 
+  test "counter:updated should broadcast 0 to the clients if the value is negative", %{socket: socket} do
+    push socket, "counter:updated", %{"value": -4}
+    assert_broadcast "counter:updated", %{"value": 0}
+  end
+
+  test "counter:updated should broadcast 1.0e20 to the clients if the value is bigger than 1.0e20", %{socket: socket} do
+    max_value = round(1.0e20)
+    push socket, "counter:updated", %{"value": max_value + 1}
+    assert_broadcast "counter:updated", %{"value": max_value}
+  end
+
   test "counter:updated should not broadcast to the clients when receive other type than integer", %{socket: socket} do
     ref = push socket, "counter:updated", %{"value": "3"}
     assert_reply ref, :error

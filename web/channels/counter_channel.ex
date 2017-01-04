@@ -7,6 +7,8 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
 
   alias PhoenixReactReduxStarterKit.CounterChannel.Monitor
 
+  @max_counter_value round(1.0e20)
+
   def join("counter:" <> user_id, _payload, socket) do
     if authorized?(socket, user_id) do
       current_user = socket.assigns.current_user
@@ -34,12 +36,21 @@ defmodule PhoenixReactReduxStarterKit.CounterChannel do
   end
 
   def handle_in("counter:updated", %{"value" => value}, socket) do
-    if is_integer(value) do
-      broadcast! socket, "counter:updated", %{"value": value}
-      Monitor.set_counter(socket.assigns.current_user.id, value)
-      {:noreply, socket}
-    else
-      {:reply, {:error, %{error: "bad value type"}}, socket}
+    cond do
+      is_integer(value) && value >= @max_counter_value  ->
+        broadcast! socket, "counter:updated", %{"value": @max_counter_value}
+        Monitor.set_counter(socket.assigns.current_user.id, @max_counter_value)
+        {:noreply, socket}
+      is_integer(value) && value >= 0 ->
+        broadcast! socket, "counter:updated", %{"value": value}
+        Monitor.set_counter(socket.assigns.current_user.id, value)
+        {:noreply, socket}
+      is_integer(value) && value < 0 ->
+        broadcast! socket, "counter:updated", %{"value": 0}
+        Monitor.set_counter(socket.assigns.current_user.id, 0)
+        {:noreply, socket}
+      true ->
+        {:reply, {:error, %{error: "bad value type"}}, socket}
     end
   end
 
