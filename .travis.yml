@@ -1,52 +1,53 @@
 branches:
   only:
-    - master
-    - language-support
-    - ecto
-    - user_support
-    - user-support-multilanguage
-    - demo
-
+  - master
+  - language-support
+  - ecto
+  - user_support
+  - user-support-multilanguage
+  - demo
 sudo: false
 dist: trusty
 language: elixir
 elixir:
-  - '1.3.4'
+- 1.3.4
 node_js:
-  - '6'
+- '6'
 otp_release:
-  - '18.1'
-
+- '18.1'
 cache:
   yarn: true
   directories:
-    - deps
-
+  - deps
 addons:
   postgresql: '9.4'
-
 services:
-  - postgresql
-
+- postgresql
 before_install:
-  - mix local.hex --force
-  - mix local.rebar --force
-  - mkdir -p node_modules/node-sass/vendor
+- mix local.hex --force
+- mix local.rebar --force
+- mkdir -p node_modules/node-sass/vendor
 install:
-  - mix deps.get
-  - npm install -g yarn
-  - yarn
-
+- mix deps.get
+- npm install -g yarn
+- yarn
 before_script:
-  - cp config/travis.exs config/test.exs
-  - mix ecto.create
-  - mix ecto.migrate
+- cp config/travis.exs config/test.exs
+- mix ecto.create
+- mix ecto.migrate
 script:
-  - mix credo --strict
-  - mix test --exclude integration
-  - npm run test
-
+- mix credo --strict
+- mix test --exclude integration
+- npm run test
 env:
   global:
-    - MIX_ENV=test
-    - NODE_ENV=test
+  - MIX_ENV=test
+  - NODE_ENV=test
+deploy:
+  provider: heroku
+  api_key:
+    secure: LMF7X+O3umKeqyBFjoowo7X9JT47ThPCy5led4T64h4ue25tRr/rS7O91gtmgCkPse+UFVGEtSX9PsNej+MgHTqcMe5SXeesHYp2z4WK1+UGQAdAski9Ol4+OMgjx5cXLEVmcglMFNAbvcis70MOHixrA7djyIVnzuTV91/L1O14BUiSZxnlCp8/F5HQkgBHQIxUSwa+dmEBBk+uwqOGSbf3RuPS4UqSyohTdAm7+QTr7viBCYOt/NH8M3ISCE2gcNiILW6+MEg3TQS+2VRnGVYdsNgtiig4w6GHRRrhqEEdsGk7wsdNEISUQSb9+E3E9Hgn+VoMr5wHybU5ySQYK29We9AYm/c101ZkT6Fv5xAFvRPhh9JmhV3zER87Q5sYWCbb7hvP7whTIJ5wvzpmI9PldXkPMFXWxu7nUrpyCPUkg1rtwvMlbYDLJuSHjhDBHFqyqhrHJMA6sr3PYfJeXK+Ka+UF95Du+sRw0IDIL8KzcmFDDD0y9V36NafGsxGP+BYoGiEvB5op7KeEA5Y4jh/UrOG+k/WvYYZ1qLS0zV94klph1jvBv0bNcbPUZGMJdvJrGPzswEd4TEdfejdw04BZzF7aOp42niKSVMRXAMTRZrOCFKYSNyaYhWLhd76k0svr3fXJywAhQsFy4oF8x4OBxVxK4uJL4K4VAL4J0L8=
+  app: phoenix-react-redux-starterkit
+  on:
+    repo: rsilvestre/phoenix-react-redux-starter-kit
+    branch: demo
