@@ -5,6 +5,7 @@ branches:
     - ecto
     - user_support
     - user-support-multilanguage
+    - demo
 
 sudo: false
 dist: trusty
