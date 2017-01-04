@@ -3,6 +3,17 @@ import { browserHistory, Router } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-intl-redux'
 
+//
+// Analytics support
+//
+import ReactGA from 'react-ga'
+ReactGA.initialize('UA-89843122-1')
+
+const logPageView = () => {
+  ReactGA.set({ page: window.location.pathname })
+  ReactGA.pageview(window.location.pathname)
+}
+
 class AppContainer extends React.Component {
   static propTypes = {
     routes : React.PropTypes.object.isRequired,
@@ -20,7 +31,7 @@ class AppContainer extends React.Component {
     return (
       <Provider store={store}>
         <div style={{ height: '100%' }}>
-          <Router history={history} children={routes} />
+          <Router history={history} children={routes} onUpdate={logPageView} />
         </div>
       </Provider>
     )
