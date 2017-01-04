@@ -89,7 +89,8 @@ node come with `npm` installed
 
 ##### NVM
 
-NVM mean _(node virtual machine)_. You can find it here : [https://github.com/creationix/nvm](https://github.com/creationix/nvm)
+NVM mean _(node version manager)_. You can find it here : [https://github.com/creationix/nvm](https://github
+.com/creationix/nvm)
 
 with cURL:
 
