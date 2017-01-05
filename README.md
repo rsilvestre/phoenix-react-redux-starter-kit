@@ -266,6 +266,23 @@ $ npm run test
 
 ## Deployment
 
+### Compile production code with [distillery](https://hexdocs.pm/distillery/walkthrough.html)
+
+You need to compile first the javascript and next phoenix. As proposed by [_Pete Corey_](https://twitter.com/petecorey) here : [Deploying elixir applications with distillery](http://www.east5th.co/blog/2016/12/26/deploying-elixir-applications-with-distillery/)
+
+```bash
+$ npm run deploy:prod
+$ MIX_ENV=prod mix do compile, phoenix.digest, release --env=prod
+```
+
+To test it :
+
+```bash
+$ PORT=8080 ./_build/prod/rel/YOUR_APP/bin/YOUR_APP foreground
+```
+
+### Docker
+
 1. build, check and push
 
    ```bash
