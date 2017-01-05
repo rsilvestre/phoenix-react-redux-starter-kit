@@ -3,8 +3,8 @@ defmodule PhoenixReactReduxStarterKit.Mixfile do
 
   def project do
     [app: :phoenix_react_redux_starter_kit,
-     version: "0.0.1",
-     elixir: "~> 1.2",
+     version: "1.1.0",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -49,7 +49,8 @@ defmodule PhoenixReactReduxStarterKit.Mixfile do
      {:credo, "~> 0.5", only: [:dev, :test]},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
-     {:guardian, "~> 0.13.0"}]
+     {:guardian, "~> 0.13.0"},
+     {:distillery, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
