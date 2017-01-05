@@ -47,6 +47,8 @@ const config = {
   },
   compiler_vendors : [
     'react',
+    'react-intl',
+    'react-ga',
     'react-redux',
     'react-router',
     'redux'

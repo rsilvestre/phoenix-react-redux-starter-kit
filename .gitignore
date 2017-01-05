@@ -15,7 +15,7 @@ erl_crash.dump
 # variables.
 /node_modules
 /config/dev.secret.exs
-/config/prod.secret.exs
+#/config/prod.secret.exs
 /priv/static/css/application.css
 /priv/static/js/application.js
 
@@ -24,4 +24,4 @@ priv/static/**
 
 coverage
 
-*.lock
+#*.lock

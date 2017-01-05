@@ -13,20 +13,25 @@ use Mix.Config
 # which you typically run after static files are built.
 config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: {:system, "PORT"}], # This is critical for ensuring web-sockets properly authorize.
+  url: [scheme: "https", host: "phoenix-react-redux-starterkit.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json",
   server: true,
   root: ".",
-  version: Mix.Project.config[:version]
+  version: Mix.Project.config[:version],
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Do not print debug messages in production
 config :logger, level: :info
 
 # Configure your database
-config :phoenix_trello, PhoenixTrello.Repo,
+config :phoenix_react_redux_starter_kit, ecto_repos: [PhoenixReactReduxStarterKit.Repo]
+
+config :phoenix_react_redux_starter_kit, PhoenixReactReduxStarterKit.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 20
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "20"),
+  ssl: true
 
 # Configure guardian
 config :guardian, Guardian,
