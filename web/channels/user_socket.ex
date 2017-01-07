@@ -6,6 +6,7 @@ defmodule PhoenixReactReduxStarterKit.UserSocket do
   ## Channels
   # channel "room:*", PhoenixReactReduxStarterKit.RoomChannel
   channel "users:*", PhoenixReactReduxStarterKit.UserChannel
+  channel "interface:*", PhoenixReactReduxStarterKit.InterfaceChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

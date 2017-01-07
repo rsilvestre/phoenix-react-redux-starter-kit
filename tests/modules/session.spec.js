@@ -11,9 +11,12 @@ import {
 } from 'modules/session'
 
 const reducerInitialState = {
+  bRequest: false,
   currentUser: null,
   socket: null,
-  channel: null,
+  userChannel: null,
+  interfaceChannel: null,
+  presences: [],
   error: null
 }
 

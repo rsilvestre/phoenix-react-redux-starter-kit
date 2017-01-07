@@ -49,6 +49,7 @@ const config = {
     'react',
     'react-redux',
     'react-router',
+    'react-tooltip',
     'redux'
   ],
 

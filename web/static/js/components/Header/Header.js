@@ -1,17 +1,34 @@
+import { findDOMNode } from 'react-dom'
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import autobind from 'autobind-decorator'
 import ReactGravatar from 'react-gravatar'
+import ReactTooltip from 'react-tooltip'
 import './Header.scss'
 
 export class Header extends React.Component {
   static propTypes = {
     signOut: React.PropTypes.func.isRequired,
-    currentUser: React.PropTypes.object
+    currentUser: React.PropTypes.object,
+    presences: React.PropTypes.array
+  }
+
+  componentDidUpdate (prevProps) {
+    const { presences : nextPresences } = this.props
+    const { presences : prevPresences } = prevProps
+    if (prevPresences && nextPresences && JSON.stringify(prevPresences) !== JSON.stringify(nextPresences)) {
+      const node = findDOMNode(this.refs.connectedUser)
+      ReactTooltip.show(node)
+      setTimeout(() => {
+        ReactTooltip.hide(node)
+      }, 2000)
+    }
+    return true
   }
 
   _renderCurrentUser () {
-    const { currentUser } = this.props
+    const { currentUser, presences } = this.props
+    const userCounter = presences && presences.length > 0 ? presences[0].size : 0
 
     if (!currentUser) {
       return false
@@ -21,7 +38,19 @@ export class Header extends React.Component {
 
     return (
       <li>
-        <Link className='current-user'>
+        <Link className='current-user' ref='connectedUser' data-tip data-for='connectedUser'>
+          {userCounter > 1 && (
+            <ReactTooltip id='connectedUser' plate='bottom' type='dark' delayHide={800} effect='solid'>
+              <div>{userCounter - 1} other connection{userCounter > 2 && 's'} with the same user</div>
+              {presences[0].values.map((value, index) => (
+                <div key={index}>
+                  {(index === 0 && (<span>you :</span>)) || (<span>other :</span>)}
+                  <span>{value.time}</span>
+                </div>
+              ))}
+            </ReactTooltip>
+          )}
+          {' '}
           <ReactGravatar className='react-gravatar' email={currentUser.email} protocol='https://' size={18} />
           {' '}
           {fullName}
