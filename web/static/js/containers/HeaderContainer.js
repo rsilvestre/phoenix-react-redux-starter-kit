@@ -8,7 +8,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = ({ session }) => ({
-  currentUser: session.currentUser
+  currentUser: session.currentUser,
+  presences: session.presences
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -7,7 +7,7 @@ defmodule PhoenixReactReduxStarterKit.FunPageTest do
 
     user_sign_in(%{user: user})
 
-    navigate_to "/fun"
+    navigate_to "/en/fun"
 
     assert page_title == "Hello PhoenixReactReduxStarterKit!"
 
@@ -27,7 +27,7 @@ defmodule PhoenixReactReduxStarterKit.FunPageTest do
 
     user_sign_in(%{user: user})
 
-    navigate_to "/fun"
+    navigate_to "/en/fun"
 
     textElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/div/div")
     inputFieldElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/div/div/input")

@@ -9,10 +9,14 @@ import FunRoute from './Fun'
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => {
-  const _ensureAuthenticated = (_nextState, replace, callback) => {
+  const _ensureAuthenticated = (_nextState, replace, next) => {
     const { dispatch } = store
-    const { session: { currentUser }, locale } = store.getState()
+    const { locale, session: { bRequest, currentUser } } = store.getState()
     const phoenixAuthToken = localStorage.getItem('phoenixAuthToken')
+
+    if (bRequest) {
+      return setTimeout(() => _ensureAuthenticated(_nextState, replace, next), 50)
+    }
 
     if (!currentUser && phoenixAuthToken) {
       dispatch(getCurrentUser())
@@ -20,7 +24,7 @@ export const createRoutes = (store) => {
       replace(`/${locale}/sign_in`.replace('//', '/'))
     }
 
-    callback()
+    next()
   }
 
   return {
