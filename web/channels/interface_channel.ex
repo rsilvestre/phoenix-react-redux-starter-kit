@@ -7,7 +7,7 @@ defmodule PhoenixReactReduxStarterKit.InterfaceChannel do
 
   alias PhoenixReactReduxStarterKit.Presence
 
-  def join("interface:" <> interface, _params, socket) do
+  def join("interface:" <> _interface, _params, socket) do
     send self, :after_join
     {:ok, socket}
   end

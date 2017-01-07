@@ -60,4 +60,12 @@ defmodule PhoenixReactReduxStarterKit.IntegrationCase do
 
     assert element_displayed?({:class, "current-user"})
   end
+
+  def wait_for(func, time \\ 220) do
+    :timer.sleep(time)
+    case func.() do
+      true -> true
+      _ -> false
+    end
+  end
 end

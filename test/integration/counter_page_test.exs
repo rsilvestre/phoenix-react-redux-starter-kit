@@ -16,7 +16,7 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
   test "Should render the page properly", %{user: user} do
     user_sign_in(%{user: user})
 
-    navigate_to "/counter"
+    navigate_to "/en/counter"
 
     assert page_title == "Hello PhoenixReactReduxStarterKit!"
 
@@ -34,7 +34,7 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
   test "Should increment the counter correctly", %{user: user} do
     user_sign_in(%{user: user})
 
-    navigate_to "/counter"
+    navigate_to "/en/counter"
 
     incrementElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[1]")
     doubleElement = find_element(:xpath, "//*[@id='root']/div/div/div[2]/div/div/div/button[2]")
@@ -58,13 +58,5 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
     assert wait_for(fn -> inner_text(counterElement) == "Counter: 0" end)
     click(incrementElement)
     assert inner_text(counterElement) == "Counter: 1"
-  end
-
-  defp wait_for(func, time \\ 220) do
-    :timer.sleep(time)
-    case func.() do
-      true -> true
-      _ -> false
-    end
   end
 end

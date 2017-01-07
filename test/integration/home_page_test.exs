@@ -7,7 +7,7 @@ defmodule PhoenixReactReduxStarterKit.HomePageTest do
 
     user_sign_in(%{user: user})
 
-    navigate_to "/"
+    navigate_to "/en/home"
 
     assert page_title == "Hello PhoenixReactReduxStarterKit!"
 

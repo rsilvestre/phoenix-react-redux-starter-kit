@@ -3,6 +3,8 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
 
   alias PhoenixReactReduxStarterKit.CounterChannel
 
+  @max_value round(1.0e20)
+
   setup do
     {:ok, _, socket} =
       socket("user_id", %{current_user: %{id: 1}})
@@ -37,9 +39,8 @@ defmodule PhoenixReactReduxStarterKit.CounterChannelTest do
   end
 
   test "counter:updated should broadcast 1.0e20 to the clients if the value is bigger than 1.0e20", %{socket: socket} do
-    max_value = round(1.0e20)
-    push socket, "counter:updated", %{"value": max_value + 1}
-    assert_broadcast "counter:updated", %{"value": max_value}
+    push socket, "counter:updated", %{"value": @max_value + 1}
+    assert_broadcast "counter:updated", %{"value": @max_value}
   end
 
   test "counter:updated should not broadcast to the clients when receive other type than integer", %{socket: socket} do
