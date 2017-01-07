@@ -8,7 +8,7 @@ describe('(Component) Header', () => {
   let _wrapper
 
   beforeEach(() => {
-    _wrapper = shallow(<Header signOut={signOut} />)
+    _wrapper = shallow(<Header signOut={signOut} presences={[]} />)
   })
 
   it('Renders a welcome message', () => {

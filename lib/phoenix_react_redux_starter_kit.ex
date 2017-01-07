@@ -6,7 +6,7 @@ defmodule PhoenixReactReduxStarterKit do
 
   """
   use Application
-  alias PhoenixReactReduxStarterKit.Endpoint
+  alias PhoenixReactReduxStarterKit.{Endpoint, Presence}
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -17,6 +17,7 @@ defmodule PhoenixReactReduxStarterKit do
     children = [
       # Start the endpoint when the application starts
       supervisor(Endpoint, []),
+      supervisor(Presence, []),
       # Start the Ecto repository
       worker(PhoenixReactReduxStarterKit.Repo, []),
       # Start your own worker by calling: PhoenixReactReduxStarterKit.Worker.start_link(arg1, arg2, arg3)

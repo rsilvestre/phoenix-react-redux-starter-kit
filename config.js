@@ -51,6 +51,7 @@ const config = {
     'react-ga',
     'react-redux',
     'react-router',
+    'react-tooltip',
     'redux'
   ],
 

@@ -7,6 +7,7 @@ defmodule PhoenixReactReduxStarterKit.UserSocket do
   # channel "room:*", PhoenixReactReduxStarterKit.RoomChannel
   channel "users:*", PhoenixReactReduxStarterKit.UserChannel
   channel "counter:*", PhoenixReactReduxStarterKit.CounterChannel
+  channel "interface:*", PhoenixReactReduxStarterKit.InterfaceChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
