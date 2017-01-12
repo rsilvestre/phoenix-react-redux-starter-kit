@@ -130,7 +130,8 @@ if (__TEST__) {
       }
     ]),
     new webpack.optimize.CommonsChunkPlugin({
-      names : ['vendor']
+      names : ['vendor'],
+      minChunks: Infinity
     })
   )
 }
