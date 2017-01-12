@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Hello Phoenix React Redux Starter Kit!</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d8d4e8">
     <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Hello PhoenixReactReduxStarterKit!</title>
+    <meta name="author" content="Michael Silvestre">
+    <meta name="apple-mobile-web-app-title" content="Phoenix React Redux Starter Kit">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#171717">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="yes">
+    <link rel="apple-touch-icon" href="<%= static_path(@conn, "/images/duck.png") %>" type="image/x-icon">
+    <link rel="apple-touch-startup-image" href="<%= static_path(@conn, "/images/duck.png") %>" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link id="favicon" rel="icon" type="image/png" sizes="64x64" href="<%= static_path(@conn, "/favicon.png") %>"/>
+    <link rel="manifest" href="<%= static_path(@conn, "/manifest.json") %>">
+    <link id="favicon" rel="shortcut icon" type="image/png" sizes="64x64" href="<%= static_path(@conn, "/favicon.png")
+    %>"/>
+    <style type="text/css">
+
+    </style>
+    <link rel="prefetch" href="<%= static_path(@conn, "/js/vendor.js") %>" as="script" />
+    <link rel="prefetch" href="<%= static_path(@conn, "/js/app.js") %>" as="script" />
   </head>
 
   <body>
+    <noscript>
+      <div>
+        Sorry This page needs JS enabled
+      </div>
+    </noscript>
     <div id="root" style="height: 100%"></div>
     <footer id="main_footer">
       <small>

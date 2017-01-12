@@ -1,0 +1,16 @@
+{
+  "short_name": "Phoenix React Redux Starter Kit",
+  "name": "Phoenix React Redux Starter Kit",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./images/phoenix.png",
+      "sizes": "272x280",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#d8d4e8",
+  "theme_color": "#d8d4e8"
+}
