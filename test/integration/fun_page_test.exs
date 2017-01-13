@@ -9,7 +9,7 @@ defmodule PhoenixReactReduxStarterKit.FunPageTest do
 
     navigate_to "/en/fun"
 
-    assert page_title == "Hello PhoenixReactReduxStarterKit!"
+    assert page_title == "Hello Phoenix React Redux Starter Kit!"
 
     assert page_source =~ "Phoenix React Redux Starter Kit"
 
