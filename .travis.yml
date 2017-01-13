@@ -14,7 +14,7 @@ elixir:
 node_js:
 - '6'
 otp_release:
-- '19'
+- '18.1'
 cache:
   yarn: true
   directories:
