@@ -18,7 +18,7 @@ defmodule PhoenixReactReduxStarterKit.CounterPageTest do
 
     navigate_to "/en/counter"
 
-    assert page_title == "Hello PhoenixReactReduxStarterKit!"
+    assert page_title == "Hello Phoenix React Redux Starter Kit!"
 
     assert page_source =~ "Phoenix React Redux Starter Kit"
 
