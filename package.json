@@ -123,7 +123,7 @@
     "ip": "^1.1.2",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
-    "node-sass": "^4.0.0",
+    "node-sass": "^7.0.0",
     "normalize.css": "^5.0.0",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
